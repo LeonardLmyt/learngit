@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Infinite</title>
+    <link href="~/css/frameIp.css" rel="stylesheet" />
+    <link href="~/css/css.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <ul id="content"></ul>
+    </div>
+    <script src="~/js/index.js"></script>
+    <script>
+        YLInfinite({
+            pc: 'content',
+            url: '/Ajax/GetYLInfinite',
+            urldata: { p: 1, s: 10 },
+            hf: function () {
+                return "<li style=\"width: 100%;background: burlywood;text-align: center;line-height: 80px;\">" + arguments[0]['t'] + "</li>"; //绑定的子节点
+            }
+        });
+    </script>
+</body>
+</html>
