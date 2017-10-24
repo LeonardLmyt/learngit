@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <link href="../../../../css/frameIp.css" rel="stylesheet" />
+    <script src="../../../../js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+    <button id="button">
+        弹出
+    </button>
+    <div class="eject">
+        <div class="eject_content">
+            <div class="eject_content_h">弹出框<i>×</i></div>
+            <div class="eject_content_c"><input type="text" class="eject_content_c_i" /></div>
+            <button class="eject_ok">确定</button>
+        </div>
+        <div class="eject_bg">aa</div>
+    </div>
+    <style>
+        .eject{display:none;width:100%;overflow:hidden;}
+        .eject_content{position: fixed;top: 30%;left: 15%;width: 70%;overflow: hidden;background-color: #fff;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;padding-bottom: 15px;z-index: 2;}
+        .eject_content_h{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding: 0 5%;height: 38px;line-height: 38px;background-color: #ddd;color: #000;font-size: 16px;}
+        .eject_content_h i{float: right;}
+        .eject_content_c{width: 80%;overflow: hidden;margin: 20px auto;}
+        .eject_content_c_i{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;width:100%;}
+        .eject_ok{display: block;width: 80%;border: none;line-height: 30px;color: #fff;background-color: brown;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;margin: 0 auto;}
+        .eject_bg{position: fixed;top: 0;left: 0;bottom: 0;width: 100%;background-color: rgba(0, 0, 0, 0.44);z-index: 1;}
+    </style>
+    <script>
+        //$(function () {
+        //    $("#button").click(function () {
+        //        $(".eject").fadeIn();
+        //    })
+        //    $(".eject_content_h i,.eject_bg").click(function () {
+        //        $(".eject").fadeOut();
+        //    })
+        //})
+
+        var d = document;
+        d.querySelector("#button").onclick = function () {
+            d.querySelector(".eject").style.display = "block";
+        }
+        d.querySelector(".eject_content_h i").onclick = function () {
+            d.querySelector(".eject").style.display = "none";
+        }
+        d.querySelector(".eject_bg").onclick = function () {
+            d.querySelector(".eject").style.display = "none";
+        }
+    </script>
+</body>
+</html>

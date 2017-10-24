@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords" />
+    <meta content="测试demo" name="Description" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no" />
+    <title>测试demo</title>
+    <link href="../../../css/framePc.css" rel="stylesheet" />
+    <style>
+        div{background-color: green;width: 100px;height: 100px;float: left;margin: 10px 30px 30px 0;}
+        div>div{background-color:bisque;width:100px;height:100px;margin:0;}
+        .demo1{transform:rotate(20deg);-webkit-transform:rotate(20deg);-moz-transform:rotate(20deg);-ms-transform:rotate(20deg);-o-transform:rotate(20deg);}
+        .demo2{transform:rotateX(40deg);-webkit-transform:rotateX(40deg);-moz-transform:rotateX(40deg);-ms-transform:rotateX(40deg);-o-transform:rotateX(40deg);}
+        .demo3{transform:rotateY(40deg);-webkit-transform:rotateY(40deg);-moz-transform:rotateY(40deg);-ms-transform:rotateY(40deg);-o-transform:rotateY(40deg);}
+        .demo4{transform:rotateZ(40deg);-webkit-transform:rotateZ(40deg);-moz-transform:rotateZ(40deg);-ms-transform:rotateZ(40deg);-o-transform:rotateZ(40deg);}
+        /* rotate3d中 x：是一个0到１之间的数值，主要用来描述元素围绕X轴旋转的矢量值；
+        y：是一个０到１之间的数值，主要用来描述元素围绕Y轴旋转的矢量值；
+        z：是一个０到１之间的数值，主要用来描述元素围绕Z轴旋转的矢量值；
+        a：是一个角度值，主要用来指定元素在3D空间旋转的角度，如果其值为正值，元素顺时针旋转，反之元素逆时针旋转。*/
+        .demo5{transform:rotate3d(0,0.5,0.5,40deg);-webkit-transform:rotate3d(0,0.5,0.5,40deg);-moz-transform:rotate3d(0,0.5,0.5,40deg);-ms-transform:rotate3d(0,0.5,0.5,40deg);-o-transform:rotate3d(0,0.5,0.5,40deg);}
+        .demo6{transform:scale(0.8);-webkit-transform:scale(0.8);-moz-transform:scale(0.8);-ms-transform:scale(0.8);-o-transform:scale(0.8);}
+        .demo7{transform:scaleX(0.8);-webkit-transform:scaleX(0.8);-moz-transform:scaleX(0.8);-ms-transform:scaleX(0.8);-o-transform:scaleX(0.8);}
+        .demo8{transform:scaleY(0.8);-webkit-transform:scaleY(0.8);-moz-transform:scaleY(0.8);-ms-transform:scaleY(0.8);-o-transform:scaleY(0.8);}
+        .demo9{transform:scaleZ(0.8);-webkit-transform:scaleZ(0.8);-moz-transform:scaleZ(0.8);-ms-transform:scaleZ(0.8);-o-transform:scaleZ(0.8);}
+        .demo10{transform:scale3d(0.8,0.6,0.5);-webkit-transform:scale3d(0.8,0.6,0.5);-moz-transform:scale3d(0.8,0.6,0.5);-ms-transform:scale3d(0.8,0.6,0.5);-o-transform:scale3d(0.8,0.6,0.5);}
+        .demo11{transform:skewX(20deg);-webkit-transform:skewX(20deg);-moz-transform:skewX(20deg);-ms-transform:skewX(20deg);-o-transform:skewX(20deg);}
+        .demo12{transform:skewY(20deg);-webkit-transform:skewY(20deg);-moz-transform:skewY(20deg);-ms-transform:skewY(20deg);-o-transform:skewY(20deg);}
+        .demo13{transform:skew(20deg,20deg);-webkit-transform:skew(20deg,20deg);-moz-transform:skew(20deg,20deg);-ms-transform:skew(20deg,20deg);-o-transform:skew(20deg,20deg);}
+        .demo14{transform:translateX(10px);-webkit-transform:translateX(10px);-moz-transform:translateX(10px);-ms-transform:translateX(10px);-o-transform:translateX(10px);}
+        .demo15{transform:translateY(10px);-webkit-transform:translateY(10px);-moz-transform:translateY(10px);-ms-transform:translateY(10px);-o-transform:translateY(10px);}
+        .demo16{transform:translateZ(10px);-webkit-transform:translateZ(10px);-moz-transform:translateZ(10px);-ms-transform:translateZ(10px);-o-transform:translateZ(10px);}
+        .demo17{transform:translate3d(10px,10px,10px);-webkit-transform:translate3d(10px,10px,10px);-moz-transform:translate3d(10px,10px,10px);-ms-transform:translate3d(10px,10px,10px);-o-transform:translate3d(10px,10px,10px);}
+    </style>
+</head>
+<body>
+    <div>
+        <div class="demo1">旋转20度--rotate</div>
+    </div>
+    <div>
+        <div class="demo2">X轴3D旋转40度--rotateX</div>
+    </div>
+    <div>
+        <div class="demo3">Y轴3D旋转40度--rotateY</div>
+    </div>
+    <div>
+        <div class="demo4">Z轴3D旋转40度--rotateZ</div>
+    </div>
+    <div>
+        <div class="demo5">3D旋转40度--rotate3d</div>
+    </div>
+    <div>
+        <div class="demo6">缩小至0.8倍--scale</div>
+    </div>
+    <div>
+        <div class="demo7">X轴缩小至0.8倍--scaleX</div>
+    </div>
+    <div>
+        <div class="demo8">X轴缩小至0.8倍--scaleY</div>
+    </div>
+    <div>
+        <div class="demo9">Z轴缩小至0.8倍--scaleZ</div>
+    </div>
+    <div>
+        <div class="demo10">3D缩小至0.8倍--scale3d</div>
+    </div>
+    <div>
+        <div class="demo11">X轴的2D倾斜20度--skewX</div>
+    </div>
+    <div>
+        <div class="demo12">Y轴的2D倾斜20度--skewY</div>
+    </div>
+    <div>
+        <div class="demo13">X轴,Y轴的2D倾斜20度--skew</div>
+    </div>
+    <div>
+        <div class="demo14">X轴右移10px--translateX</div>
+    </div>
+    <div>
+        <div class="demo15">Y轴下移10px--translateY</div>
+    </div>
+    <div>
+        <div class="demo16">Z轴前移10px--translateZ</div>
+    </div>
+    <div>
+        <div class="demo17">X轴,Y轴，Z轴前移10px--translate3D</div>
+    </div>
+</body>
+</html>

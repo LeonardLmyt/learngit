@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <script>
+        var titleInit = document.title, isShine = true;
+        setInterval(function () {
+            var title = document.title;
+            if (isShine == true) {
+                if (/新/.test(title) == false) {
+                    document.title = '【你有新消息】';
+                } else {
+                    document.title = '【　　　　　】';
+                }
+            } else {
+                document.title = titleInit;
+            }
+        }, 500);
+        window.onfocus = function () {
+            isShine = false;
+        };
+        window.onblur = function () {
+            isShine = true;
+        };
+
+        // for IE
+        document.onfocusin = function () {
+            isShine = false;
+        };
+        document.onfocusout = function () {
+            isShine = true;
+        };
+    </script>
+</body>
+</html>

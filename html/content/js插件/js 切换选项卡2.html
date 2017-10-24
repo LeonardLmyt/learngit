@@ -1,0 +1,71 @@
+﻿<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        #nav {width: 800px;overflow: hidden;background-color: #fff;}
+        #nav li {width: 20%;display: inline-block;float: left;text-align: center;height: 40px;line-height: 40px;background-color: #ddd;cursor: pointer;}
+        #ok, #nav li:hover {background-color: #666 !important;}
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+    <script>
+        var se = function (ds,d,c,cb) {
+            this.ds = ds;
+            this.d = d;
+            this.c = c;
+            this.l = [];
+            if (!this.a) {
+                se.prototype.a = function (n) {
+                    if (n.length > 0) {
+                        for (var i = 0; i < n.length; i++) {
+                            this.a(n[i].childNodes);
+                            if (n[i].nodeType === 1 && n[i].tagName.toUpperCase() === this.d.toUpperCase()) {
+                                this.l.push(n[i]);
+                            }
+                        }
+                    }
+                };
+                se.prototype.b = function (kw) {
+                    for (var i = 0; type = this.l[i++];) {
+                        (function (j, w) {
+                            type.onclick = function () {
+                                for (var k = 0; p = w.l[k++];) {
+                                    var e = p.className;
+                                    if (j == k) {
+                                        if (!(e.indexOf(w.c) > -1)) {
+                                            p.className = !!e ? ' ' + w.c : w.c;
+                                        }
+                                        cb(k - 1);
+                                    } else {
+                                        if (e.indexOf(w.c) > -1) {
+                                            p.className = (e.charAt(e.indexOf(w.c) - 1) == ' ' ? e.replace(' ' + w.c, '') : e.replace(w.c, ''));
+                                        }
+                                    }
+                                }
+                            }
+                        })(i, kw);
+                    }
+                };
+            };
+        };
+
+        var j = new se(document.getElementById("nav"), 'li', 'ok', function (p) {
+            console.log(p);
+        });
+        j.a(j.ds.childNodes);
+        j.b(j);
+    </script>
+</body>
+</html>

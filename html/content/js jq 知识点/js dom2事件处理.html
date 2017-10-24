@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+    <button id="myBtn">myBtn</button>
+    <button id="myLink">myLink</button>
+    <script type="text/javascript">
+        /*
+          虽然DOM和IE中的event对象不同，但基于它们之间的像是依旧可以拿出来跨浏览器的方案来。
+          IE中event对像的全部信息和方法DOM对象中都有，只不过实现的方法不一样
+
+          2016-10-29 解决ie事件绑定handler作用域问题
+          ie下的作用域为window,需更改element作用域为handler-->function () { handler.call(element)，而不能直接写handler
+        */
+        var EventUtil = {
+            addHandler: function (element, type, handler) {
+                if (element.addEventListenter) {
+                    element.addEventListenter(type, handler, false);
+                }else if (element.attachEvent) {
+                    element.attachEvent("on" + type, function () { handler.call(element) });
+                }else {
+                    element["on" + type] = handler;
+                }
+            },
+            getEvent: function (event) {
+                return event ? event : window.event;
+            },
+            getTarget: function (event) {
+                return event.target || event.srcElement;
+            },
+            preventDefault: function (event) {
+                if (event.preventDefault) {
+                    event.preventDefault;
+                } else {
+                    event.returnValue = false;
+                }
+            },
+            removeHandler: function (element,type,handler) {
+                if (element.removeEventListenter) {
+                    element.removeEventListenter(type, handler, false);
+                } else if (element.detachEvent) {
+                    element.detachEvent("on" + type, handler);
+                } else {
+                    element["on" + type] = null;
+                }
+            },
+            stopPropagation:function(event) {
+                if (event.stopPropagation) {
+                    event.stopPropagation;
+                } else {
+                    event.cancelBubble = true;
+                }
+            }
+        }
+        
+        //支持多个事件的处理程序，这里addHandler（）和removeHandler（）没有考虑到所有浏览器问题，例如IE作用域问题，在IE中this === window,不过使用它们添加和移除事件程序还是足够了
+        var btn = document.getElementById("myBtn");
+        var handler = function () {
+            alert("Clicked");
+        }
+
+        EventUtil.addHandler(btn, "click", handler);
+
+        EventUtil.removeHandler(btn,"click",handler);
+
+        //使用getEvent方 法时必须假设有一个事件对象传入到处理程序中，而且要把变量传给这个方法，如下
+        //在兼容DOM的浏览器中，event变量只是简单地传入和返回，而在IE中，event参数是未定义的（undefined），因此就会返回window.event
+        var btn = document.getElementById("myBtn");
+        btn.onclick = function (event) {
+            event = EventUtil.getEvent(event);
+        }
+
+        //getTarget(),它返回事件的目标。在这个方法内部，会检测event对象的target属性，如果存在则返回属性的值，否则，返回SRCElement属性的值
+        btn.onclick = function (event) {
+            event = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(event);
+        }
+
+        //用于取消事件的默认行为，在传入event对象后，以下代码单击链接都不会打开另一个页面
+        var link = document.getElementById("myLink");
+        link.onclick = function (event) {
+            event = EventUtil.getEvent(event);
+            EventUtil.preventDefault(event);
+        }
+
+        //首先尝试使用dom方法阻止事件流，否则就使用canceBubble属性
+        btn.onclick = function (event) {
+            alert("Clicked");
+            event = EventUtil.getEvent(event);
+            EventUtil.stopPropagation(event);
+        }
+
+        document.body.onclick = function (event) {
+            alert("Body clicked");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    <script>
+        /*
+           random() 方法可返回介于 0 ~ 1 之间的一个随机数。
+           如果多个随机数相乘，结果只会越集中于一点，这个值便是0，如Math.random()*Math.random()*Math.random()*Math.random()
+           单个随机数反而离散均匀的分布在0~1之间
+        */
+        var i = Math.random();
+        console.log(i);
+
+        /*
+            生成n到m之间的随机数
+        */
+        function createRandom(n,m) {
+            return Math.random() * (m - n) + n;
+        }
+        console.log(Math.random() * (2 - 1) + 1);
+
+        /*
+           生成随机数时间戳
+        */
+        function stampRandom() {
+            var a = Math.random, b = parseInt;
+            return Number(new Date()).toString() + b(10 * a()) + b(10 * a()) + b(10 * a());
+        }
+        console.log(stampRandom());
+    </script>
+</body>
+</html>

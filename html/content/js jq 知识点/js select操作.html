@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="../../js/public.js"></script>
+    <title>select 操作</title>
+</head>
+<body>
+    <select id="select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
+
+    <button onclick="AddOption()">添加子项目</button>
+    <button onclick="newOption()">添加子项目</button>
+    <button onclick="onOption()">选中子项目</button>
+    <button onclick="removeOption()">删除子项目</button>
+    <button onclick="nulloption()">删除子项目</button>
+
+    <select id="select1">
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
+    <button onclick="clearSelectboxMain()">删除子项目</button>
+    <button onclick="selectedoption()">获取选中的选项</button>
+
+    <script>
+        /*
+           IE7测试所有方法均无兼容问题
+        */
+        var i = document.getElementById("select");
+        var j = document.getElementById("select1");
+        function clearSelectboxMain() {
+            clearSelectbox(j);
+        }
+
+        function onOption() { 
+            i.options[1].selected = true; //选中第二个
+        }
+
+        //添加
+        function AddOption() {
+            i.add(new Option(3, 3), undefined); //添加选项,第二个参数为undefined是为了兼容IE和支持DOM的浏览器
+        }
+        
+        function newOption() {
+            var newOption = document.createElement("option");
+            newOption.appendChild(document.createTextNode("4"));
+            newOption.setAttribute("value", 4);
+            i.appendChild(newOption);
+        }
+
+        //清除
+        function removeOption() {
+            i.removeChild(i.options[0]); //移除子项目的方法
+        }
+
+        function nulloption() { 
+            i.options[2] = null; //将子项目设置为空
+        }
+
+        function clearSelectbox(selectbox) {
+            for (var i = 0, len = selectbox.options.length; i < len; i++) {
+                selectbox.remove(i);
+            }
+        }
+
+        //查看选中项的value值
+        function selectedoption() {
+            console.log(j.options[j.selectedIndex].value);
+        }
+    </script>
+</body>
+</html>

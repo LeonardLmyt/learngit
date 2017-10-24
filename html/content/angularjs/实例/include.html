@@ -1,0 +1,18 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>include</title>
+    <script src="../../../js/angular/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCon">
+        <div ng-include="'include_module.html'"></div>
+    </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCon", function ($scope) {
+            $scope.names = ["Roos","Mr.L","Ms.L"];
+        })
+    </script>
+</body>
+</html>

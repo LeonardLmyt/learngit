@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/json/json2.js"></script> <!--重写JSON方法-->
+    <title>json 操作</title>
+</head>
+<body>
+    <script>
+
+        // 在JSON中，有两种结构：对象和数组。
+        //1.对象
+        //一个对象以“{”开始，“}”结束。每个“key”后跟一“:”，“‘key/value’ 对”之间运用 “,”分隔。packJson = {"name":"nikita", "password":"1111"}
+        //2.数组
+        //packJson = [{"name":"nikita", "password":"1111"}, {"name":"tony", "password":"2222"}];数组是值的有序集合。一个数组以“[”开始，“]”结束。值之间运用 “,”分隔。
+
+        //json 字符串转 转 json 对象
+        console.group('由JSON字符串转换为JSON对象');
+        var json01 = '{ "name": "cxh", "sex": "man" }';
+        console.log(eval("(" + json01 + ")").name);                //ie8(兼容模式),ie7和ie6也可以使用eval()将字符串转为JSON对象，但不推荐这些方式，这种方式不安全eval会执行json串中的表达式。
+        console.log(JSON.parse(json01).name);                      //浏览器支持的转换方式(Firefox，chrome，opera，safari，ie9，ie8)等浏览器
+        console.log($.parseJSON(json01).name); //jq方法
+        console.groupEnd('由JSON字符串转换为JSON对象');
+
+        console.group('由JSON对象转换为JSON字符串');
+        var json02 = { name: "cxh", sex: "man" };
+        console.log(JSON.stringify(json02));                  //浏览器支持的转换方式(Firefox，chrome，opera，safari，ie9，ie8)等浏览器
+        console.groupEnd('由JSON对象转换为JSON字符串');
+
+        //遍历json
+        console.group('遍历json');
+        console.group('遍历json对象');
+        var json03 = { "name": "nikita", "password": "1111" };
+        for (var i in json03) {
+            console.log(i + ":" + json03[i]);
+        }
+        console.groupEnd('遍历json对象');
+        console.group('遍历json数组');
+        var json04 = packJson = [{ "name": "nikita", "password": "1111" }, { "name": "tony", "password": "2222" }];
+        for (var i in json04) {
+            console.log(json04[i].name + ":" + json04[i].password);
+        }
+        var json05 = packJson = [{ "name": "nikita", "password": "1111" }, { "name": "tony", "password": "2222" }];
+        for (var i = 0, j = json05.length; i < j; i++) {
+            console.log(json05[i].name + ":" + json05[i].password);
+        }
+        console.groupEnd('遍历json数组');
+        console.groupEnd('遍历json');
+
+        //利用JSON.stringify第二个参数进行筛选
+        console.group('JSON.stringify筛选');
+        var book = {
+            "title": "Professional Javascript",
+            "authors": [
+                "Nicholas C. Zakas"
+            ],
+            edition: 3,
+            year: 2011
+        }
+
+        var jsonText = JSON.stringify(book, function (key, value) {
+            switch (key) {
+                case "authors":
+                    return value.join(",");
+                case "year":
+                    return 5000;
+                case "edition":
+                    return undefined;
+                default:
+                    return value;
+            }
+        })
+        console.log(book);
+        console.log(jsonText);
+        console.groupEnd('JSON.stringify筛选');
+    </script>
+</body>
+</html>

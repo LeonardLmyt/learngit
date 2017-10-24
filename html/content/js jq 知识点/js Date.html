@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    <div id="demo"></div>
+    <script type="text/javascript">
+        var myDate = new Date();
+        console.group("时间操作");
+        console.log(myDate.getYear()); //获取当前年份(2位)
+        console.log(myDate.getFullYear()); //获取完整的年份(4位,1970-????)
+        console.log(myDate.getMonth()); //获取当前月份(0-11,0代表1月),所以获取当前月份是myDate.getMonth()+1;
+        console.log(myDate.getDate()); //获取当前日(1-31)
+        console.log(myDate.getDay()); //获取当前星期X(0-6,0代表星期天)
+        console.log(myDate.getHours()); //获取当前小时数(0-23)
+        console.log(myDate.getMinutes()); //获取当前分钟数(0-59)
+        console.log(myDate.getSeconds()); //获取当前秒数(0-59)
+        console.log(myDate.getMilliseconds()); //获取当前毫秒数(0-999)
+        console.log(myDate.getTime()); //获取当前时间(从1970.1.1开始的毫秒数)
+        console.log(myDate.toLocaleDateString()); //获取当前日期
+        var mytime = myDate.toLocaleTimeString(); //获取当前时间
+        console.log(myDate.toLocaleString()); //获取日期与时间
+        console.groupEnd("时间操作");
+
+
+        //获取当前时间的js 最简单的了@~~@   IE为2016年8月24日 22:26:19 格式 搜狗为Wednesday, August 24, 2016 22:39:42 格式 其他测试浏览器正常，包括I360浏览器，360极速浏览器，FF，欧朋，猎豹等
+        //这种办法还是存在兼容性问题，比较好的解决方法是逐个获取年月日的参数进行拼接，代码量大
+        console.group("最简单的获取当前时间的格式 yyyy-MM-dd mm:HH:ss");
+        console.log((new Date()).toLocaleDateString().replace(/\//g, "-") + " " + (new Date()).toTimeString().substr(0, 8));
+
+        //兼容性写法，所有浏览器支持
+        console.log(getdate());
+        console.groupEnd("最简单的获取当前时间的格式 yyyy-MM-dd mm:HH:ss");
+
+        console.group("日期转时间戳");
+        //JS获取当前时间戳的方法-JavaScript 获取当前毫秒时间戳有以下三种方法：
+        var timestamp1 = Date.parse(new Date());     // 结果：1475231131000       //不推荐; 毫秒改成了000显示
+        console.log(timestamp1);
+
+        var timestamp2 = (new Date()).valueOf();     //  结果：1475231131123       //推荐; valueOf()函数返回指定对象的原始值获得准确的时间戳值
+        console.log(timestamp2);
+
+        var timestamp3 = new Date().getTime();        // 结果：1475231131123        //推荐;
+        console.log(timestamp3);
+
+        /*
+            2016-10-26 新增一种生成时间戳的方法Number(new Date()).toString()
+        */
+
+        var timetamp4 = Number(new Date());
+        console.log(timetamp4);
+        console.groupEnd("日期转时间戳");
+
+        console.group("时间戳转日期");
+        //js时间戳转日期
+        var timestamp4 = new Date(1472048779952); //直接用 new Date(时间戳) 格式
+        console.log(timestamp4);
+        console.log(timestamp4.toLocaleDateString().replace(/\//g, "-") + " " + timestamp4.toTimeString().substr(0, 8));
+        console.groupEnd("时间戳转日期");
+
+        console.time("时间");
+        time("08:00:00", "30", "18:00:00");
+        console.timeEnd("时间");
+
+
+        //预约前台时间段方法 兼容性写法，因为获取mm:HH:ss的方法所有浏览器兼容
+        function time(start, mlong, end) {
+            var demo = document.getElementById("demo"),
+            ul = document.createElement("ul"),
+            start = new Date("2000/01/01 " + start),
+            end = new Date("2000/01/01 " + end),
+            lok = start;
+            while (lok.getTime() < end.getTime()) {
+                ul.innerHTML += "<li>" + (start).toTimeString().substr(0, 5).toString() + " - " + (new Date(start)).toTimeString().substr(0, 5).toString() + "</li>";
+                lok = new Date(start.setMinutes(start.getMinutes() + parseInt(mlong)));
+            }
+            demo.appendChild(ul);
+        }
+
+        //拼接时间
+        function getdate() {
+            var now = new Date(),
+                y = now.getFullYear(),
+                m = now.getMonth() + 1,
+                d = now.getDate();
+            return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 8);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        //闭包是指有权访问另外一个函数作用域中的变量的函数
+
+        function f1() {
+            var n = 999;
+            function f2() {
+                n +=1;
+                console.log(n); // 999
+            }
+            return {
+                f2: f2
+            }
+        }
+        var ff = f1();
+        ff.f2();
+        
+        /*
+           在另外一个函数内部定义函数会包含函数（即外部函数）的活动对象添加到它的作用域中，因此，执行f1()时，f1()包含函数与内部匿名函数的作用域.
+           当f1()函数返回后，其执行环境的作用域会被销毁，但它的活动对象仍然会留在内存中；知道匿名对象函数销毁后，f1()的活动对象才会被销毁。
+           例如：var i = f1();
+           i = null;
+
+           闭包的滥用会导致过多的占用内存，造成浏览器卡
+        */
+
+
+        //闭包的真正意义
+        //1.函数嵌套函数
+        //2.函数内部可以访问到外部的变量或者对象
+        //3.避免了垃圾回收
+
+
+        /*
+            2016-10-25新知识
+
+            闭包经典的写法，返回一个匿名函数，当函数赋值给一个常量时生成闭包，可以继续用常量名加()的方式调用闭包的内部函数进行运行
+            也可以使用foo(1)(1)进行调用闭包，但是此举内部函数只能调用一次
+            
+
+            注：++tmp和tmp++的差别可以用alert()来进行区别
+        */
+        function foo(x) {
+            var tmp = 3;
+            return function (y) {
+                console.log(x + y + (++tmp));
+            }
+        }
+        var bar = foo(2); // bar 现在是一个闭包
+        bar(10); //每次bar(10的时候tmp都会加1)
+    </script>
+</body>
+</html>

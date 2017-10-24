@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>测试demo</title>
+</head>
+<body>
+    <!--
+         1.input类型
+
+           设置为disabled的input将会有下面的限制：
+        不能接收焦点
+        使用tab键时将被跳过
+        可能不是successful的
+           设置为readonly的input将会有下面的限制：
+        可以接收焦点但不能被修改
+        可以使用tab键进行导航
+        可能是successful的
+        只有successful的表单元素才是有效数据，也即是可以进行提交。disabled和readonly的文本输入框只能通过脚本进行修改value属性。
+         -->
+    <div style="background-color:#ddd;">
+        <input type="button" value="按钮" /> 按钮<br /> 
+        <input type="checkbox" checked="checked" /> 复选框<br />
+        <input type="checkbox" /> 复选框<br />
+        <input type="checkbox" /> 复选框<br />
+        <input type="file" /> 文件域<br />
+        <input type="hidden" /> 隐藏表单 <br />
+        <input type="image" src="../../../../images/car.png" /> 图片按钮 <br />
+        <input type="password" autofocus="autofocus" /> 密码框 <br />
+        <input type="radio" /> 单选框 <br />
+        <input type="reset" /> 重置按钮 <br />
+        <input type="text" disabled="disabled" value="文本输入框" /> 文本输入框 <br />
+        <input type="text" readonly="readonly" value="文本输入框" /> 文本输入框 <br />
+        <!-- 以上属于通用的 -->
+        <!-- 一下属于h5添加的有兼容性 -->
+        <input type="date" /> 年月日时间选择<br />
+        <input type="datetime" /> 时间选择<br />
+        <input type="datetime-local" /> 时间选择<br />
+        <input type="month" /> 月份选择<br />
+        <input type="week" /> 周数选择<br />
+        <input type="number" max="100" min="0" maxlength="3" step="0.1" /> 数字输入框 <br />
+        <input type="color" /> 颜色选择器 <br />
+        <input type="email" /> 邮箱输入框 <br />
+        <input type="search" /> 搜索框 <br />
+        <input type="range" /> 滑动进度条<br />
+        <input type="url" /> url输入框<br />
+    </div>
+</body>
+</html>

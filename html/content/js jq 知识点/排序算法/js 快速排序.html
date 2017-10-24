@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    <script>
+        var json = [3, 4, 6, 7, 3, 2, 4];
+        function quickSort(arr) {
+            if (arr.length <= 1) { return arr; }
+            var pivotIndex = Math.floor(arr.length / 2),
+                pivot = arr.splice(pivotIndex, 1)[0],
+                left = [],
+                right = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] <= pivot) {
+                    left.push(arr[i]);
+                }
+                else {
+                    right.push(arr[i]);
+                }
+            }
+            return quickSort(left).concat([pivot], quickSort(right));
+        }
+        quickSort(json);
+        console.log(json);
+    </script>
+</body>
+</html>

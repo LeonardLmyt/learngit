@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js原生class操作</title>
+    <link href="../../css/framePc.css" rel="stylesheet" />
+</head>
+<body>
+    <p class="p wwe">1</p>
+    <p class="p">2</p>
+    <p class="p wwe">3</p>
+    <p class="p">4</p>
+
+    <script>
+        (function (window) {
+            var a = function (selector) {
+                return new a.prototype.b.init(selector);
+            }
+            a.prototype.b = {
+                length: 0,
+                init: function (selector) {
+                    var _document = window.document,
+                        selector = selector.trim(),
+                    classInt = 0;
+                    if (typeof selector != 'string' || !selector) {
+                        return this;
+                    }
+                    var mark = selector.charAt(0);
+                    if (mark == '#') {
+                        this[0] = _document.getElementById(selector.substring(1));
+                        classInt++;
+                    } else {
+                        var tags = '';
+                        if (selector.charAt(0) == '.' || selector.charAt(0) == '*') {
+                            tags = _document.getElementsByTagName('*');
+                        } else {
+                            tags = _document.getElementsByTagName(selector);
+                        }
+                        for (var i = 0; i < tags.length; i++) {
+                            if (selector.charAt(0) == '.' && !!tags[i].getAttribute('class') ? tags[i].getAttribute('class').indexOf(selector.substring(1)) > -1 : false) {
+                                this[classInt] = tags[i];
+                                classInt++;
+                            } else if (selector.charAt(0) != '.') {
+                                this[classInt] = tags[i]
+                                classInt++;
+                            }
+                        }
+                    }
+                    this.length = classInt;
+                    return this;
+                }
+            }
+            a.prototype.c = {
+                css: function (_col) {
+                    for (var i = 0; i < this.length; i++) {
+                        for (var k in _col) {
+                            this[i].style[k] = _col[k];
+                        }
+                    }
+                },
+                addClass: function (_cl) {
+                    for (var i = 0; i < this.length; i++) {
+                        if (!(this[i].className.indexOf(_cl) > -1)) {
+                            this[i].className = this[i].className ? this[i].className + ' ' + _cl : _cl;
+                        }
+                    }
+                },
+                removeClass: function (_cl) {
+                    for (var i = 0; i < this.length; i++) {
+                        if (this[i].className.indexOf(_cl) > -1) {
+                            this[i].className = (this[i].className.charAt(this[i].className.indexOf(_cl) - 1) == ' ' ? this[i].className.replace(' ' + _cl, '') : this[i].className.replace(_cl, ''));
+                        }
+                    }
+                },
+                hasClass: function (_cl) {
+                    var isok = false;
+                    for (var i = 0; i < this.length; i++) {
+                        if (this[i].className.indexOf(_cl) > -1) {
+                            isok = true;
+                            break;
+                        }
+                    }
+                    return isok;
+                },
+                toggleClass: function (_cl) {
+                    for (var i = 0; i < this.length; i++) {
+                        if (this[i].className.indexOf(_cl) > -1) {
+                            this[i].className = this[i].className.replace(_cl, "");
+                        } else {
+                            this[i].className = this[i].className ? this[i].className + ' ' + _cl : _cl;
+                        }
+                    }
+                }
+            }
+            a.prototype.b.init.prototype = a.prototype.c;
+            return window.$ = a;
+        })(window);
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>公共头部底部</title>
+    <link href="../../../../css/frameIp.css" rel="stylesheet" />
+    <script src="../../../../js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+    <!-- 头部 begin -->
+    <header class="header">
+        <div class="header-left">
+            <a id="goback" href="javascript:history.go(-1)">
+                <em class="header-q"></em>
+            </a>
+        </div>
+        <p id="header-title">公共头部底部</p>
+    </header>
+    <div class="header-placeholder"></div>
+    <style>
+        .header{position: fixed;top:0;left:0;z-index: 1000;width: 100%;height: 50px;line-height: 50px;overflow: hidden;background-color: #fff;}
+        .header::after{content: "";position: absolute;bottom: 0px;left: 0;width: 100%;height: 1px;background-color: #ddd;transform: scaleY(.5);-webkit-transform: scaleY(.5);}
+        .header .header-left{display: inline-block;float: left;width: 18%;height: 50px;}
+        .header .header-left a{position: relative;  width: 100%;height: 50px;display: block;}
+        .header .header-left a .header-q{position: absolute;top: 36%;left: 30%;right: 20px;width: 10px;height: 10px;border: #AAAAAA solid;transform: rotate(225deg);-webkit-transform: rotate(225deg);-moz-transform: rotate(225deg);-o-transform: rotate(225deg);border-width: 2px 2px 0 0;}
+        .header p{display: inline-block;float: left;width: 64%;overflow: hidden;height: 50px;line-height: 50px;text-align: center;font-size: 1.1em;  text-overflow: ellipsis;-o-text-overflow: ellipsis;white-space: nowrap;}
+        .header-placeholder{width:100%;height:50px;}
+    </style>
+    <!-- 头部 end -->
+
+    <!-- 底部 begin -->
+    <div class="footer-placeholder"></div>
+    <footer class="footer">
+        <ul>
+            <li>
+                <a href="javascript:void(0);">
+                    <div class="footer-img">
+                        <div class="footer-img01"></div>
+                    </div>
+                    <p>首页</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <div class="footer-img">
+                        <div class="footer-img02"></div>
+                    </div>
+                    <p>我的</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <div class="footer-img">
+                        <div class="footer-img03"></div>
+                    </div>
+                    <p>更多</p>
+                </a>
+            </li>
+        </ul>
+    </footer>
+    <style>
+        .footer{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;height:45px; width: 100%;overflow: hidden;position: fixed;bottom: 0;background-color: #fff;padding: 0 5%;border-top: 1px solid #ddd;z-index: 1000;}
+        .footer li:nth-child(2){margin: 0 27.5%;}
+        .footer li{display: inline-block;width: 15%;height: 45px;float: left;text-align: center;font-size: 0.8em;}
+        .footer li a{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;display: block;width: 100%;height: 45px;overflow: hidden;padding-top: 8%;}
+        .footer li .footer-img{width: 24px;overflow: hidden;height: 0;padding-bottom: 24px;position: relative;margin: 0 auto;}
+        .footer li .footer-img div{width: 100%;height: 100%;top: 0;left: 0;position: absolute;background-size: 100% 100%;-moz-background-size: 100% 100%;-webkit-background-size: 100% 100%;-o-background-size: 100% 100%;}
+        .footer li p{font-size: 0.9em;line-height: 1.5;color: #666666;}
+        .footer-img01{background: url(../../../../images/2.png) no-repeat;}
+        .footer-img02{background: url(../../../../images/3.png) no-repeat;}
+        .footer-img03{background: url(../../../../images/4.png) no-repeat;}
+        .footer-placeholder{width:100%;height:50px;}
+    </style>
+    <!-- 底部 end -->
+</body>
+</html>

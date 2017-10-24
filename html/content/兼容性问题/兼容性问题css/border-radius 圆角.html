@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <link href="../../../css/framePc.css" rel="stylesheet" />
+    <style>
+        /*在PC中圆角按钮或者其他圆角一般用背景图来做，且大小不要用background-size修改，不兼容*/
+        .demo {
+            width: 100px;
+            height: 50px;
+            margin: 50px;
+            border: 1px red solid;
+            border-radius: 15px;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            position: absolute;
+            z-index: 100;
+            behavior: url(../../../file/ie-css3.htc);
+        }
+    </style>
+</head>
+<body>
+    <div class="demo"></div>
+</body>
+</html>

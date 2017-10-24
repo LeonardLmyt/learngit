@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js换肤</title>
+    <link href="../../../css/framePc.css" rel="stylesheet" />
+    
+    <script src="js/demo.js"></script>
+</head>
+<body>
+    <button id="demo1">皮肤1</button>
+    <button id="demo2">皮肤2</button>
+    <script src="../../../js/public.js"></script>
+    <script>
+        var skinJson = ['css/demo1.css', 'css/demo2.css'];
+        !(function () {
+            if (vs.cookieUtil.get("skin") != null) {
+                console.log("已有皮肤");
+                createLink(vs.cookieUtil.get("skin"));
+            } else {
+                console.log("初始设置");
+                vs.cookieUtil.set("skin", skinJson[0], 30, "/");
+                createLink(vs.cookieUtil.get("skin"));
+            }
+        })();
+
+        document.getElementById("demo1").onclick = function () {
+            vs.cookieUtil.set("skin", skinJson[0], 30, "/");
+            location.reload();
+        }
+        document.getElementById("demo2").onclick = function () {
+            vs.cookieUtil.set("skin", skinJson[1], 30, "/");
+            location.reload();
+        }
+
+        //js加载css
+        function createLink(src) {
+            var link = document.createElement("link");
+            link.rel = "stylesheet"
+            link.type = "text/css";
+            link.href = src;
+            document.getElementsByTagName("head")[0].appendChild(link);
+        }
+    </script>
+</body>
+</html>

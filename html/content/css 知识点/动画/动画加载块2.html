@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords" />
+    <meta content="测试demo" name="Description" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no" />
+    <title>测试demo</title>
+    <link href="../../../css/frameIp.css" rel="stylesheet" />
+     <!-- 新知识点 当position: fixed;top: 0;bottom: 0;的top和bottom结合时高度会自动填充到100%,absolute也可以-->
+    <style>
+        .content {width: 100%;overflow: hidden;}
+        #add {position: fixed;background: #ce7e7e;width: 100%;top: 0;bottom: 0;right:-101%;z-index: 5;transition:0.5s ease;-webkit-transition:0.5s ease;}
+    </style>
+</head>
+<body>
+    <div class="content"><button id="open">出来</button></div>
+    <div id="add"></div>
+    <script>
+        var open = document.getElementById("open");
+        var add = document.getElementById("add");
+        open.onclick = function () {
+            add.setAttribute("style", "right:0%;");
+        }
+        add.onclick = function () {
+            add.setAttribute("style", "right:-101%;");
+        }
+    </script>
+</body>
+</html>

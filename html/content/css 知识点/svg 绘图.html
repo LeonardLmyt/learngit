@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords" />
+    <meta content="测试demo" name="Description" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no" />
+    <title>测试demo</title>
+    <link href="../../css/framePc.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- 圆形Circle对于circle元素，我们有3个需要指定的属性。它们是cx，cy，r。cx和cy是圆心在X轴和Y轴上的坐标，如果没有指定的话，它们的默认值为0。r为圆形的半径。 -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="50"></circle>
+    </svg>
+
+    <!-- 矩形Rect矩形的创建跟圆形的创建方式差不多。就它最基础的形式来说，我们需要为其指定左上角的的坐标x和y，以及该矩形的宽度width和高度height的值。 -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100">
+        <rect x="0" y="0" width="200" height="100"></rect>
+    </svg>
+
+    <!-- 多边形Polygon我们可以通过在points属性上的多组 x-y 坐标点来定义我们的多边形元素。 -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 100">
+        <polygon points="0,50 50,0 150,0 200,50 150,100 50,100"></polygon>
+    </svg>
+
+
+    <!--  路径Path
+     path元素是在形状处理方面最强大的元素。在path元素中，我们可以定义d属性，这个属性为我们的路径如何延伸作出了定义。d属性可以让我们通过一系列的命令来指定一个运动轨迹。我们可以用直线命令和弯曲命令来构建一些复杂的形状。但实际上，你并不希望手写贝塞尔曲线这种玩意，二是通过矢量软件来创建并输出SVG。但了解一下他们并不是什么坏事。
+
+     让我们通过直线命令来创建一个简单的矩形。我们需要的命令如下：
+     M x y:移动到坐标x-y
+     L x y:从当前位置画一条直线到坐标x—y
+     H x:从当前位置画一条水平线到坐标x
+     V y:从当前位置画一条垂直线到坐标y
+     Z:闭合路径 -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+        <path d="M 0 0 H 200 V 200 H 0 Z"></path>
+    </svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100">
+        <path style="cursor:pointer;"  d="M 0 0 C 50 100, 150 100, 200 0" />
+    </svg>
+
+
+    <!--defs元素用于预定义一个元素使其能够在SVG图像中重复使用。defs元素中定义的图形不会直接显示在SVG图像上。要显示它们需要使用use元素来引入它们。-->
+    <svg width="500" height="400">
+        <defs>
+            <pattern id="mypattern" patternUnits="userSpaceOnUse" x="10" y="10" width="100" height="100">
+                <path d="M 0 0 L 100 0 L 50 100 z" fill="#222" stroke="orange" stroke-width="5"></path>
+            </pattern>
+        </defs>
+        <rect x="10" y="10" width="300" height="200" stroke="green" stroke-width="5" fill="url(#mypattern)"></rect>
+    </svg>
+
+
+    <!--g标签为svg常用的标签，详细用法如下：
+    g用于把相关元素进行组合的容器元素。
+    在svg中提供了如g元素这样的将多个元素组织在一起的元素。由g元素编组在一起的可以设置相同的颜色，可以进行坐标变换-->
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12cm" height="4cm" viewBox="0 0 1200 400" version="1.1">
+        <desc>Example fillrule-evenodd - demonstrates fill-rule:evenodd</desc>
+        <rect x="1" y="1" width="1198" height="398" fill="none" stroke="blue" />
+        <defs>
+            <path id="Triangle" d="M 16,0 L -8,9 v-18 z" fill="black" stroke="none" />
+        </defs>
+        <g fill-rule="evenodd" fill="red" stroke="black" stroke-width="3">
+            <path d="M 250,75 L 323,301 131,161 369,161 177,301 z" />
+            <use xlink:href="#Triangle" transform="translate(306.21 249) rotate(72)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(175.16,193.2) rotate(216)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(314.26,161) rotate(0)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(221.16,268.8) rotate(144)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(233.21,126.98) rotate(288)" overflow="visible" />
+            <path d="M 600,81 A 107,107 0 0,1 600,295 A 107,107 0 0,1 600,81 z              M 600,139 A 49,49 0 0,1 600,237 A 49,49 0 0,1 600,139 z" />
+            <use xlink:href="#Triangle" transform="translate(600,188) rotate(0) translate(107,0) rotate(90)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(600,188) rotate(120) translate(107,0) rotate(90)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(600,188) rotate(240) translate(107,0) rotate(90)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(600,188) rotate(60) translate(49,0) rotate(90)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(600,188) rotate(180) translate(49,0) rotate(90)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(600,188) rotate(300) translate(49,0) rotate(90)" overflow="visible" />
+            <path d="M 950,81 A 107,107 0 0,1 950,295 A 107,107 0 0,1 950,81 z              M 950,139 A 49,49 0 0,0 950,237 A 49,49 0 0,0 950,139 z" />
+            <use xlink:href="#Triangle" transform="translate(950,188) rotate(0) translate(107,0) rotate(90)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(950,188) rotate(120) translate(107,0) rotate(90)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(950,188) rotate(240) translate(107,0) rotate(90)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(950,188) rotate(60) translate(49,0) rotate(-90)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(950,188) rotate(180) translate(49,0) rotate(-90)" overflow="visible" />
+            <use xlink:href="#Triangle" transform="translate(950,188) rotate(300) translate(49,0) rotate(-90)" overflow="visible" />
+        </g>
+    </svg>
+
+
+    <!-- 添加canvas标签，并加上红色边框以便于在页面上查看 -->
+    <canvas id="myCanvas" width="400" height="300" style="border: 1px solid red;">
+        您的浏览器不支持canvas标签。
+    </canvas>
+
+    <script type="text/javascript">
+        //获取Canvas对象(画布)
+        var canvas = document.getElementById("myCanvas");
+        //简单地检测当前浏览器是否支持Canvas对象，以免在一些不支持html5的浏览器中提示语法错误
+        if (canvas.getContext) {
+            //获取对应的CanvasRenderingContext2D对象(画笔)
+            var ctx = canvas.getContext("2d");
+
+            //创建一个表示图片的Image对象
+            var img = new Image();
+            //指定图片的URL
+            img.src = "http://www.365mini.com/static/upload/image/info.png";
+            //当图片加载完毕后再设置对应的图像平铺模式并填充矩形
+            img.onload = function () {
+                //创建CanvasPattern对象，指定上述图片进行水平和垂直方向的重复平铺
+                var pattern = ctx.createPattern(img, "repeat");
+                ctx.fillStyle = pattern;
+                //从坐标点(0,0)开始，绘制并填充宽度为200px、高度为100px的矩形
+                ctx.fillRect(0, 0, 200, 100);
+            }
+        }
+    </script>
+	
+	<!--文字显示-->
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<defs>
+			<path id="path1" style="cursor:pointer;" d="M 0 0 C 50 100, 150 100, 200 0"></path>
+			<!-- <path id="path1" d="M75,20 a1,1 0 0,0 100,0"></path> -->
+		</defs>
+		<text x="10" y="100" style="fill:red;">
+	    	<textpath xlink:href="#path1" >I Love You</textpath>
+    	</text>
+	</svg>  
+</body>
+</html>

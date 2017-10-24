@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    <input type="text" id="input" />
+    <script type="text/javascript">
+        var EventUtil = {
+            addHandler: function (element, type, handler) {
+                if (element.addEventListenter) {
+                    element.addEventListenter(type, handler, false);
+                } else if (element.attachEvent) {
+                    element.attachEvent("on" + type, function () { handler.call(element) });
+                } else {
+                    element["on" + type] = handler;
+                }
+            },
+            getEvent: function (event) {
+                return event ? event : window.event;
+            },
+            getTarget: function (event) {
+                return event.target || event.srcElement;
+            },
+            preventDefault: function (event) {
+                if (event.preventDefault) {
+                    event.preventDefault;
+                } else {
+                    event.returnValue = false;
+                }
+            },
+            removeHandler: function (element, type, handler) {
+                if (element.removeEventListenter) {
+                    element.removeEventListenter(type, handler, false);
+                } else if (element.detachEvent) {
+                    element.detachEvent("on" + type, handler);
+                } else {
+                    element["on" + type] = null;
+                }
+            },
+            stopPropagation: function (event) {
+                if (event.stopPropagation) {
+                    event.stopPropagation;
+                } else {
+                    event.cancelBubble = true;
+                }
+            }
+        }
+
+        // 参考http://www.cnblogs.com/manongxiaobing/archive/2012/11/05/2755412.html
+        /*
+            event.altKey
+            语法：event.altKey
+            取值：true | false  1|0
+            说明：
+            altKey属性为true表示事件发生时Alt键被按下并保持，为false则Alt键没有按下。 
+            altKey属性可结合鼠标或键盘使用，多用于制作一些快捷操作方式。 
+ 
+            event.ctrlKey 
+            功能：检测事件发生时Ctrl键是否被按住了。
+            语法：event.ctrlKey
+            取值：true | false  1|0
+            说明：
+            ctrlKey属性为true表示事件发生时Ctrl键被按下并保持，为false则Ctrl键没有按下。 
+            ctrlKey属性可结合鼠标或键盘使用，多用于制作一些快捷操作方式。 
+ 
+            event.shiftKey 
+            功能：检测事件发生时Shift键是否被按住了。
+            语法：event.shiftKey
+            取值：true | false  1|0
+            说明：
+            shiftKey属性为true表示事件发生时Shift键被按下并保持，为false则Shift键没有按下。 
+            shiftKey属性可结合鼠标或键盘使用，多用于制作一些快捷操作方式。 
+        */
+        var input = document.getElementById("input");
+        EventUtil.addHandler(input, "keydown", function (event)
+        {
+            console.log(event);
+            var ctrlKey = event.ctrlKey || event.metaKey;
+            if (ctrlKey && event.keyCode == 83) { //83 s键
+                alert('save');
+            }
+        });
+    </script>
+</body>
+</html>

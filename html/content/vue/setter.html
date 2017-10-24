@@ -1,0 +1,44 @@
+﻿<html  ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+</head>
+<body>
+    <div id="example">
+        <p>{{ firstName }}</p>
+        <p>{{ lastName }}</p>
+        <p>{{ fullName }}</p>
+        <button v-on:click="add">添加</button>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                firstName: 'Foo',
+                lastName: 'Bar'
+            },
+            computed: {
+                fullName: {
+                  // getter
+                  get: function () {
+                    return this.firstName + ' ' + this.lastName;
+                  },
+                  // setter
+                  set: function (newValue) {
+                      console.log(newValue);
+                      var names = newValue.split(' ');
+                      this.firstName = names[0];
+                      this.lastName = names[names.length - 1];
+                  }
+                }
+            },
+            methods:{
+                add:function(){
+                    this.fullName = 'John Doe';
+                }
+            }
+        }) 
+    </script>
+</body>
+</html>

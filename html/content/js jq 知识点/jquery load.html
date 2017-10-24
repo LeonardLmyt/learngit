@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="demo"></div>
+    <script type="text/javascript">
+        /*
+            jq加载外部文件，可以加入到某个节点里面，而且可以使用标签
+        */
+       $(document).ready(function(){
+           $(".demo").load("../../file/dome.txt");
+	   })
+    </script>
+</body>
+</html>

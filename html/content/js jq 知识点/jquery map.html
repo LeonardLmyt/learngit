@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="demo"></div>
+    <div class="demo1"></div>
+    <div class="p">
+        <p>11</p>
+        <p>22</p>
+        <p>33</p>
+    </div>
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //用map方法平均耗时为1.8ms以上
+           console.time("1");
+           $(".demo").append($("p").map(function () {
+               return $(this).text();
+           }).get().join(","));
+           console.timeEnd("1");
+
+            //用each方法迭代平均耗时为0.6ms
+           console.time("2");
+           arr = new Array();
+           $(".p p").each(function () {
+               arr.push($(this).text());
+           })
+           $(".demo1").text(arr);
+           console.timeEnd("2");
+
+           /*测试证明each加Array进行组合数组为耗时短，用toSting方法直接转为字符串*/
+	   })
+    </script>
+</body>
+</html>

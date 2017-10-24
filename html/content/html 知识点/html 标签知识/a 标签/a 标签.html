@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>测试demo</title>
+</head>
+<body>
+    <!--
+         target:有5种值
+          1._blank	  : 在新窗口中打开被链接文档。
+          2._self	  : 默认。在相同的框架中打开被链接文档。
+          3._parent   : 在父框架集中打开被链接文档。
+          4._top	  : 在整个窗口中打开被链接文档。
+          5.framename :	在指定的框架中打开被链接文档。
+         -->
+    <div style="background-color:#ddd;">
+        <p>target属性知识点</p>
+        <a href="demo1.html" target="_blank" title="新页面">新页面</a>
+        <iframe name="demo1" src="demo1.html"></iframe>
+        <a href="demo4.html" target="framename" title="指定框架中打开页面">指定框架中打开页面</a>
+        <iframe name="framename" src="demo3.html"></iframe>
+    </div>
+    <!-- 
+        a标签链接状态
+        1.link    : 连接平常的状态
+        2.visited : 连接被访问过之后
+        3.hover   : 鼠标放到连接上的时候
+        4.active  : 连接被按下的时候 
+         -->
+    <div class="bg" style="background-color:#666">
+        <p>a标签链接状态</p>
+        <a href="javascript:void(0)">链接状态</a>
+        <style>
+            .bg a:link{background-color:#fff;}
+            .bg a:visited{background-color:blue;}
+            .bg a:hover{background-color:red;}
+            .bg a:active{background-color:#000;}
+        </style>
+    </div>
+</body>
+</html>

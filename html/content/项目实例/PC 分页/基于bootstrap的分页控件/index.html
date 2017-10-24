@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/jquery.bs_pagination.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="well" id="page"></div>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/jquery.bs_pagination.min.js"></script>
+    <script src="js/en.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#page").bs_pagination({
+                totalPages: 100,
+                onChangePage: function () { console.log("onChangePage") },
+                onLoad: function () { console.log("onLoad") }
+            });
+        });
+    </script>
+</body>
+</html>

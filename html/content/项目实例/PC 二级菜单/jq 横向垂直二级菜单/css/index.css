@@ -1,0 +1,11 @@
+﻿@charset 'UTF-8';
+.header_nav{width: 100%;height: 40px;background: url(../images/homepage_01.png) center center;}
+.header_nav_sub{width: 1200px;height: 40px;margin: 0 auto;text-align: center;}
+.header_nav_sub_ul{display:inline-block;_zoom: 1;*display:inline;}
+.header_nav_sub_ul ul {position: absolute;left: 0px;display: none;padding: 5px 0;margin: 0 0 0 -1px;background: #1F1F1F;z-index: 5;}
+.header_nav_sub_ul li {float: left;position: relative;}
+.header_nav_sub_ul ul a:hover{color:#FBBA2A;background: #6b6767;}
+.header_nav_sub_ul li a {display: block;width: 116px;height: 40px;line-height: 40px;color: #000;text-align: center;font-size: 14px;}
+.header_nav_sub_ul ul a {display: block;height: 25px !important;line-height: 25px !important;font-size: 14px;color: #969696;}
+.header_nav_sub_ok,.header_nav_sub_ul>li>a:hover{background: url(../images/homepage_02.png);}
+

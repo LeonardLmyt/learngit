@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js jsonp跨域取数据</title>
+</head>
+<body>
+    <!--方法1 直接引入js文件，先声明jsonp的函数名称-->
+    <script>
+        var jsonp = function (data) {
+            console.log("姓名：" + data.name + ",年龄：" + data.age);
+        };
+    </script>
+    <script type="text/javascript" src="http://www.d2c1688.com/Template/Default/Skin/js/test_jsonp.js"></script>
+
+    <!--方法2 可异步加载文件，同样需要先声明jsonp的函数名称-->
+    <script>
+        var jsonp = function (data) {
+            console.log("时间：" + data.date + ",事件：" + data.work);
+        };
+        // 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）
+        var url = "http://www.d2c1688.com/Template/Default/Skin/js/test_jsonp.js";
+        // 创建script标签，设置其属性
+        var script = document.createElement('script');
+        script.setAttribute('src', url);
+        // 把script标签加入head，此时调用开始
+        document.getElementsByTagName('head')[0].appendChild(script);
+    </script>
+
+    <!--方法3 引入文件json文件，且var i = {}，可直接获取i，也就是json-->
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <button id="count">点我</button>
+    <div id="show"></div>
+    <script src="发布订阅模式全局.js"></script>
+    <script type="text/JavaScript">
+        var a = (function () {
+            var count = 0;
+            var button = document.getElementById('count');
+            button.onclick = function () {
+                Event.trigger('add', count++);
+            }
+        })();
+
+        var b = (function () {
+            var div = document.getElementById('show');
+            Event.listen('add', function (count) {
+                div.innerHTML = count;
+            });
+        })();
+    </script>
+</body>
+</html>

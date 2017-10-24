@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords" />
+    <meta content="测试demo" name="Description" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no" />
+    <title>测试demo</title>
+    <link href="../../../css/frameIp.css" rel="stylesheet" />
+    <!-- pointer-events: none;可用于穿透点击 -->
+    <style>
+        .content{width: 100%;overflow: hidden;}
+        .content .meun{width: 100%;overflow: hidden;height: 50px;line-height: 50px;text-align: center;background-color: #ddd;}
+        .after{display: block;position: absolute;left: 0;top: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.4);opacity: 0;will-change: opacity;transition: opacity 0.2s cubic-bezier(0,0,0.3,1);
+               -webkit-transform: translateX(-103%);transform: translateX(-103%);}
+        .opacity .after{opacity: 1;-webkit-transform: none;transform: none;}
+        .eject{width: 90%;height: 100%;overflow: hidden;background-color: #000;position: fixed;top: 0;left: 0;z-index: 100;-webkit-transform: translateX(-103%);transform: translateX(-103%);}
+        .visible {-webkit-transform: none;transform: none;transition: all 500ms ease-in;}
+        .close {transition: all 500ms ease-out 50ms;}
+    </style>
+</head>
+<body>
+   <div class="content">
+       <div class="meun">分栏</div>
+       <div class="after"></div>
+   </div>
+    <div class="eject"></div>
+    <script>
+        function start(){
+            eject.classList.add("visible");
+            content.classList.add("opacity");
+            //eject.addEventListener("transitionend", end, false);
+        }
+
+        function end() {
+            eject.classList.remove("visible");
+            content.classList.remove("opacity");
+            eject.classList.add("close");
+        }
+
+        var meun = document.querySelector(".meun");
+        var eject = document.querySelector(".eject");
+        var content = document.querySelector(".content");
+        var after = document.querySelector(".after");
+
+        meun.addEventListener("click", start, false);
+        after.addEventListener("click", end, false);
+    </script>
+</body>
+</html>

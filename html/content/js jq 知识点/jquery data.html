@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="demo" data-demo="demo"></div>
+    <div class="demo1">点击</div>
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            console.log($(".demo").data("demo"));
+            $(".demo1").data("demo", "demo1");
+
+            $(".demo1").click(function () {
+                console.log($(".demo1").data("demo"));
+            })
+	   })
+    </script>
+</body>
+</html>

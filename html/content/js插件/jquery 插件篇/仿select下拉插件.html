@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../../js/jquery-1.8.3.min.js"></script>
+    <link href="../../../css/framePc.css" rel="stylesheet" />
+    <style>
+        /* dropdown begin */
+        #dropdown {width: 186px;margin: 0 auto;position: relative;}
+        #dropdown p {width: 80%;height: 24px;line-height: 24px;border: 1px solid #a9c9e2;background-color: #e8f5fe;color: #333;cursor: pointer;padding: 0 14% 0 6%;}
+        #dropdown i{width: 0;height: 0;border-left: 5px solid transparent !important;border-right: 5px solid transparent !important;border-style: solid;border-width: 10px 0 0 0;border-color: #333;position: absolute;top: 35%;right: 5%;}
+        #dropdown ul {width: 100%;background: #e8f5fe;margin-top: 2px;border: 1px solid #a9c9e2;position: absolute;display: none;}
+        #dropdown ul li {height: 24px;line-height: 24px;padding: 0 14% 0 6%;}
+        #dropdown ul li:hover {background: #c6dbfc;color: #369;}
+        /* dropdown end */
+    </style>
+</head>
+<body>
+    <div id="dropdown">
+    </div>
+    <script>
+        (function ($) {
+            $.fn.extend({
+                Dropdown: function (options) {
+                    var ms = {} || new Object();
+                    //默认值
+                    ms.defaults = {
+                        content: { "1": "内容1", "2": "内容2" },
+                        title: "请选择",
+                    };
+                    ms.options = $.extend(ms.defaults, options);
+                    ms.than = $(this);
+                    return this.each(function () {
+                        ms.than.append("<p data-value=\"0\">" + ms.options.title + "</p><i></i>");
+                        ms.ful = $("<ul><li data-value=\"0\">" + ms.options.title + "</li></ul>");
+                        $.each(ms.options.content, function (key, value) {
+                            ms.ful.append("<li data-value=\"" + key + "\">" + value + "</li>")
+                        })
+                        ms.than.append(ms.ful);
+                        $(this).find("p,i").on("click", function () {
+                            ms.ul = ms.than.find("ul");
+                            if (ms.ul.is(':hidden')) {
+                                ms.ul.slideDown("fast");
+                                ms.than.find("i").attr("style", "border-style: solid;border-width: 0 0 10px 0;border-color: #333;");
+                            } else {
+                                ms.ul.slideUp("fast");
+                                ms.than.find("i").attr("style", "");
+                            }
+                        });
+                        $(this).find("li").on("click", function () {
+                            ms.txt = $(this).text();
+                            ms.than.find("p").html(ms.txt).attr("data-value", $(this).data("value"));
+                            ms.than.find("ul").hide();
+                            ms.than.find("i").attr("style", "");
+                        });
+                    })
+                }
+            })
+        })(jQuery);
+
+        $(function () {
+            $("#dropdown").Dropdown({ content: { "3": "内容3", "4": "内容4", "5": "内容5" }, "title": "请选择" });
+        })
+    </script>
+</body>
+</html>

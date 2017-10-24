@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    <input type="text" id="input" />
+    <script type="text/javascript">
+        /*
+            keydown ：当用户按下键盘上的任意键时触发，而且如果按住不放的话，会重复触发此事件。
+
+            keypress：当用户按下键盘上的字符键时触发，而且如果按住不放的话，会重复触发此事件。
+            按下Esc事件也会触发这个事件，safari3.1之前的版本也会在用户按下非字符时触发keypress事件。
+
+            keyup：当用户释放键盘上的键时触发。
+
+            KeyPress主要用来捕获字符键包括：
+            1. 数字(注意：包括Shift+数字的符号)、
+            2. 字母（注意：包括大小写）、
+            3. 小键盘等除了F1-12、SHIFT、Alt、Ctrl、Insert、Home、PgUp、Delete、End、PgDn、ScrollLock、Pause、NumLock、{菜单键}、{开始键}和方向键外的ANSI字符
+        */
+
+        var EventUtil = {
+            addHandler: function (element, type, handler) {
+                if (element.addEventListenter) {
+                    element.addEventListenter(type, handler, false);
+                } else if (element.attachEvent) {
+                    element.attachEvent("on" + type, function () { handler.call(element) });
+                } else {
+                    element["on" + type] = handler;
+                }
+            },
+            getEvent: function (event) {
+                return event ? event : window.event;
+            },
+            getTarget: function (event) {
+                return event.target || event.srcElement;
+            },
+            preventDefault: function (event) {
+                if (event.preventDefault) {
+                    event.preventDefault;
+                } else {
+                    event.returnValue = false;
+                }
+            },
+            removeHandler: function (element, type, handler) {
+                if (element.removeEventListenter) {
+                    element.removeEventListenter(type, handler, false);
+                } else if (element.detachEvent) {
+                    element.detachEvent("on" + type, handler);
+                } else {
+                    element["on" + type] = null;
+                }
+            },
+            stopPropagation: function (event) {
+                if (event.stopPropagation) {
+                    event.stopPropagation;
+                } else {
+                    event.cancelBubble = true;
+                }
+            }
+        }
+
+        //IE下不支持event.which，支持event.keyCode
+        //其他浏览器event.which和event.keyCode都支持
+        var input = document.getElementById("input");
+        EventUtil.addHandler(input, "keydown", function (event)
+        {
+            console.log(EventUtil.getEvent(event));
+            console.log(EventUtil.getEvent(event).which);
+            console.log(EventUtil.getEvent(event).keyCode);
+        });
+    </script>
+</body>
+</html>

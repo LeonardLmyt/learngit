@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        var total = 12;
+        var zWin = $(window);
+        var render = function () {
+            var padding = 2;
+            for (var i = 1; i <= total; i++) {
+                var p = padding;
+                var imgSrc = '../../../images/' + i + '.jpg';
+                if (i % 4 == 1) {
+                    p = 0;
+                }
+                var j = document.createElement('canvas');
+                j.setAttribute("id", 'cvs_' + i);
+                j.width = 500;
+                j.height = 500;
+                document.body.appendChild(j);
+                var imageObj = new Image();
+                imageObj.index = i;
+                imageObj.onload = function () {
+                    var cvs = $('#cvs_' + this.index)[0].getContext('2d');
+                    cvs.width = this.width;
+                    cvs.height = this.height;
+                    cvs.drawImage(this, 0, 0);
+                }
+                imageObj.src = imgSrc;
+            }
+        }
+        render();
+    </script>
+</body>
+</html>

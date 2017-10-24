@@ -1,0 +1,20 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>timeout</title>
+    <script src="../../../js/angular/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCon">
+        <div ng-bind="name"></div>
+    </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCon", function ($scope,$timeout) {
+            $timeout(function () {
+                $scope.name = "Mr.L";
+            },2000)
+        })
+    </script>
+</body>
+</html>

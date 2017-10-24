@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        function func1() {
+            this.p = "func1-";
+            this.A = function (arg) {
+                alert(this.p + arg);
+            }
+        }
+        //定义一个函数func2，具有属性p和方法B
+        function func2() {
+            this.p = "func2-";
+            this.B = function (arg) {
+                alert(this.p + arg);
+            }
+        }
+        var obj1 = new func1();
+        var obj2 = new func2();
+        obj1.A("byA");    //显示func1-byA
+        obj2.B("byB");    //显示func2-byB
+        obj1.A.apply(obj2, ["byA"]); //显示func2-byA，其中[“byA”]是仅有一个元素的数组，下同
+        obj2.B.apply(obj1, ["byB"]); //显示func1-byB
+        obj1.A.call(obj2, "byA");  //显示func2-byA
+        obj2.B.call(obj1, "byB");  //显示func1-byB 
+    </script>
+</body>
+</html>

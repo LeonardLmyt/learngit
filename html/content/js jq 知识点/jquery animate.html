@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="first">欢迎来到脚本之家</div>
+    <div class="second">欢迎来到脚本之家</div>
+    <button id="btn1">执行第一个动画</button>
+    <button id="btn2">执行第二个动画</button>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btn1").click(function () {
+                $(".first").animate({ width: "1000px" }, { queue: true, duration: 5000, complete: function a() { alert("宽度设置完成") } })
+            .animate({ fontSize: '7em' }, { queue: true, duration: 5000 })
+            .animate({ borderWidth: 10 }, { queue: true, duration: 5000, complete: function a() { alert("宽度设置完成") } });
+            });
+
+            $("#btn2").click(function () {
+                $(".second").animate({ width: "1000px" }, { queue: false, duration: 1000 })
+            .animate({ fontSize: '7em' }, 1000)
+            .animate({ borderWidth: 10 }, 1000);
+            })
+        })
+    </script>
+</body>
+</html>

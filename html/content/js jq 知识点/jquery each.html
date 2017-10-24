@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <select>
+        <option value="0">00</option>
+        <option value="1">11</option>
+        <option value="2">22</option>
+    </select>
+    <div id="demo1" style="background-color:antiquewhite"></div>
+    <div id="demo2" style="background-color:aqua"></div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*遍历对象(有附加参数)*/
+            $.each($("select option"), function (p1, p2) {
+                $("#demo1").append(this);       //这里的this指向每次遍历中Object的当前属性值
+                $("#demo1").append(p1);
+                $("#demo1").append(p2);//访问附加参数
+            }, ['参数1', '参数2']);
+
+            /*遍历数组(有附件参数)*/
+            var Array = ['周杰伦', '容嬷嬷', '李克勤'];
+            $.each(Array, function (i, value) {
+                console.log('%o', this);       //这里的this指向每次遍历中Array的当前元素
+                console.log(i);           //i表示Array当前下标
+                console.log(value);         //value表示Array当前元素
+            });
+
+            /*遍历属性*/
+            var obj = { one: 1, two: 2, three: 3, four: 4 };
+            $.each(obj, function (key, val) {
+                console.log(obj[key]); //这个each就有更厉害了，能循环每一个属性  输出结果为：1  2  3  4
+            });
+
+            /*遍历二维数组*/
+            //其实arr1为一个二维数组，item相当于取每一个一维数组   
+            //item[0]相对于取每一个一维数组里的第一个值   
+            //所以上面这个each输出分别为：1   4   7     
+            var arr1 = [[1, 4, 3], [4, 6, 6], [7, 20, 9]]
+            $.each(arr1, function (i, item) {
+                console.log(item[0]);
+            });
+        })
+    </script>
+</body>
+</html>

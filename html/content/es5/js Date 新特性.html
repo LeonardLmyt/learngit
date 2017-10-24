@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js Date 新特性</title>
+</head>
+<body>
+    <script>
+        /*
+            Date.now() 方法返回自1970年1月1日 00:00:00 UTC到当前时间的毫秒数。
+
+            Date.now()兼容旧浏览器
+            if (!Date.now) {
+                Date.now = function now() {
+                    return new Date().getTime();
+                };
+            }
+        */
+
+        console.log('Date.now():' + Date.now());
+
+
+        /*
+            toISOString() 方法返回一个 ISO（ISO 8601 Extended Format）格式的字符串： 
+            YYYY-MM-DDTHH:mm:ss.sssZ。时区总是UTC（协调世界时），加一个后缀“Z”标识。
+        */
+
+        console.log('toISOString:' + new Date().toISOString())
+    </script>
+</body>
+</html>

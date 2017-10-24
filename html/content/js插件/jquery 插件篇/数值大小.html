@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../../js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+    <script>
+        //扩展jQuery对象本身
+        jQuery.extend({
+            "minValue": function (a, b) {
+                ///<summary>
+                /// 比较两个值，返回最小值
+                ///</summary>
+                return a < b ? a : b;
+            },
+            "maxValue": function (a, b) {
+                ///<summary>
+                /// 比较两个值，返回最大值
+                ///</summary>
+                return a > b ? a : b;
+            }
+        });
+
+        //调用
+        var i = 100; j = 101;
+        console.log($.minValue(i, j)); // min_v 等于 100
+        console.log($.maxValue(i, j)); // max_v 等于 101
+    </script>
+</body>
+</html>

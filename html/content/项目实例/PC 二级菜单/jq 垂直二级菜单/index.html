@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=320,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<style type="text/css">
+.menu_list{width:268px;margin:0 auto;}
+.menu_head{height: 47px;line-height: 47px;padding-left: 38px;font-size: 14px;color: #525252;cursor: pointer;border-left: 1px solid #e1e1e1;border-right: 1px solid #e1e1e1;border-bottom: 1px solid #e1e1e1;border-top: 1px solid #F1F1F1;
+	position: relative;margin: 0px;font-weight: bold;background: #f1f1f1 url(images/pro_left.png) center right no-repeat;}
+.menu_list .current{background:#f1f1f1 url(images/pro_down.png) center right no-repeat;}
+.menu_body{line-height: 38px;border-left: 1px solid #e1e1e1;background: #fff;border-right: 1px solid #e1e1e1;}
+.menu_body a{display:block;height:38px;line-height:38px;padding-left:38px;color:#777777;background:#fff;text-decoration:none;border-bottom:1px solid #e1e1e1;}
+.menu_body a:hover{text-decoration:none;}
+</style>
+</head>
+<body>
+<!-- 代码部分begin -->
+<div id="firstpane" class="menu_list">
+	<h3 class="menu_head">哲学</h3>
+	<div style="display:none" class="menu_body">
+		<a href="javascript:void(0)">科学技术哲学</a>
+		<a href="javascript:void(0)">宗教学</a>
+		<a href="javascript:void(0)">美学</a>
+		<a href="javascript:void(0)">伦理学</a>
+		<a href="javascript:void(0)">逻辑学</a>
+		<a href="javascript:void(0)">外国哲学</a>
+		<a href="javascript:void(0)">中国哲学</a>
+		<a href="javascript:void(0)">马克思主义哲学</a>
+	</div>
+	<h3 class="menu_head">经济学</h3>
+	<div style="display:none" class="menu_body">
+		<a href="javascript:void(0)">应用经济学</a>
+		<a href="javascript:void(0)">理论经济学</a>
+		<a href="javascript:void(0)">国民经济学</a>
+		<a href="javascript:void(0)">区域经济学</a>
+		<a href="javascript:void(0)">产业经济学</a>
+		<a href="javascript:void(0)">国际贸易学</a>
+		<a href="javascript:void(0)">劳动经济学</a>
+		<a href="javascript:void(0)">政治经济学</a>
+	</div>
+	<h3 class="menu_head">法学</h3>
+	<div style="display:none" class="menu_body">
+		<a href="javascript:void(0)">马克思主义基本原理</a>
+		<a href="javascript:void(0)">马克思主义发展史</a>
+		<a href="javascript:void(0)">马克思主义中国化研究</a>
+		<a href="javascript:void(0)">国外马克思主义研究</a>
+		<a href="javascript:void(0)">思想政治教育</a>
+	</div>
+	<h3 class="menu_head">教育学</h3>
+	<div style="display:none" class="menu_body">
+		<a href="javascript:void(0)">体育人文社会学</a>
+		<a href="javascript:void(0)">体育教育训练学</a>
+		<a href="javascript:void(0)">民族传统体育学</a>
+		<a href="javascript:void(0)">发展与教育心理学</a>
+		<a href="javascript:void(0)">应用心理学</a>
+		<a href="javascript:void(0)">教育学原理</a>
+		<a href="javascript:void(0)">课程与教学论</a>
+		<a href="javascript:void(0)">比较教育学</a>
+	</div>
+	<h3 class="menu_head">工学</h3>
+	<div style="display:none" class="menu_body">
+		<a href="javascript:void(0)">一般力学与力学基础</a>
+		<a href="javascript:void(0)">固体力学</a>
+		<a href="javascript:void(0)">流体力学</a>
+		<a href="javascript:void(0)">工程力学</a>
+		<a href="javascript:void(0)">机械制造及其自动化</a>
+		<a href="javascript:void(0)">机械电子工程</a>
+	</div>
+</div>
+<script src="js/jquery.js"></script>
+<script>
+$(document).ready(function(){
+	//$("#firstpane .menu_body:eq(0)").show();
+	$("#firstpane h3.menu_head").click(function(){
+	    $(this).toggleClass("current").next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+		$(this).siblings().removeClass("current");
+	});
+	//$("#secondpane .menu_body:eq(0)").show();
+	$("#secondpane h3.menu_head").mouseover(function(){
+	    $(this).toggleClass("current").next("div.menu_body").slideDown(500).siblings("div.menu_body").slideUp("slow");
+		$(this).siblings().removeClass("current");
+	});
+});
+</script>
+<!-- 代码部分end -->
+</body>
+</html>

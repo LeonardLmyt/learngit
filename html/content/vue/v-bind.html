@@ -1,0 +1,22 @@
+﻿<html  ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+</head>
+<body>
+    <div id="app">
+        <p v-bind:value="message">{{message}}</p>
+        <button v-bind:disabled="isButtonDisabled">Button</button>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                isButtonDisabled:true,
+                message:'情书'
+            }
+        })
+    </script>
+</body>
+</html>

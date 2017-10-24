@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    <div class="div1">div1</div>
+    <div id="div2">div2</div>
+    <div value="div3">div3</div>
+    <script type="text/javascript">
+        /*
+            querySelector() 方法返回文档中匹配指定 CSS 选择器的一个元素。
+            通过Document类型调用querySelector()方法时，会在文档元素的范围查找匹配的元素。而
+            通过Element类型调用querySelector()方法时，只会在该元素后代元素的范围内查找匹配的元素
+            注：在 HTML DOM 中，Element 对象表示 HTML 元素。
+        */
+        console.log(document.querySelector(".div1"));
+        console.log(document.querySelector("#div2"));
+        console.log(document.querySelector("div[value='div3']"));
+    </script>
+</body>
+</html>

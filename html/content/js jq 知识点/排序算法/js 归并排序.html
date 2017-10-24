@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>归并排序</title>
+</head>
+<body>
+    <script type="text/javascript">
+        /**
+         * [归并排序]
+         * @param  {[Array]} arr   [要排序的数组]
+         * @param  {[String]} prop  [排序字段，用于数组成员是对象时，按照其某个属性进行排序，简单数组直接排序忽略此参数]
+         * @param  {[String]} order [排序方式 省略或asc为升序 否则降序]
+         * @return {[Array]}       [排序后数组，新数组，并非在原数组上的修改]
+         */
+        var mergeSort = (function () {
+            // 合并
+            var _merge = function (left, right, prop) {
+                var result = [];
+
+                // 对数组内成员的某个属性排序
+                if (prop) {
+                    while (left.length && right.length) {
+                        if (left[0][prop] <= right[0][prop]) {
+                            result.push(left.shift());
+                        } else {
+                            result.push(right.shift());
+                        }
+                    }
+                } else {
+                    // 数组成员直接排序
+                    while (left.length && right.length) {
+                        if (left[0] <= right[0]) {
+                            result.push(left.shift());
+                        } else {
+                            result.push(right.shift());
+                        }
+                    }
+                }
+
+                while (left.length)
+                    result.push(left.shift());
+
+                while (right.length)
+                    result.push(right.shift());
+
+                return result;
+            };
+
+            var _mergeSort = function (arr, prop) { // 采用自上而下的递归方法
+                var len = arr.length;
+                if (len < 2) {
+                    return arr;
+                }
+                var middle = Math.floor(len / 2),
+                    left = arr.slice(0, middle),
+                    right = arr.slice(middle);
+                return _merge(_mergeSort(left, prop), _mergeSort(right, prop), prop);
+            };
+
+            return function (arr, prop, order) {
+                var result = _mergeSort(arr, prop);
+                if (!order || order.toLowerCase() === 'asc') {
+                    // 升序
+                    return result;
+                } else {
+                    // 降序
+                    var _ = [];
+                    result.forEach(function (item) {
+                        _.unshift(item);
+                    });
+                    return _;
+                }
+            };
+        })();
+
+
+        var Array1000 = function () {
+            var i = 10000, j = [];
+            for (var k = 0; k < i; k++) {
+                j.push(Math.ceil(Math.random() * (1000000 - 100000) + 100000));
+            }
+            return j;
+        }()
+
+        console.log(Array1000);
+
+        console.time('归并排序');
+        console.log(mergeSort(Array1000, null, 'asc'));
+        console.timeEnd('归并排序');
+
+
+        console.time('冒泡排序');
+        for (var i = 0, l = Array1000.length; i < l - 1; ++i) {
+            var temp;
+            for (var j = 0; j < l - i - 1; ++j) {
+                if (Array1000[j] > Array1000[j + 1]) {
+                    temp = Array1000[j + 1];
+                    Array1000[j + 1] = Array1000[j];
+                    Array1000[j] = temp;
+                }
+            }
+        }
+        console.timeEnd('冒泡排序');
+    </script>
+</body>
+</html>

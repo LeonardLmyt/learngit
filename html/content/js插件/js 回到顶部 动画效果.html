@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js原生回到顶部</title>
+</head>
+<body style="width:100%;height:2000px">
+    <div style="position: fixed;bottom: 50px;right: 10%;background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAt8AAALgCAMAAAB7+OuOAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NzM3OTMyN0MyMUFFMTFFNzlCNkNDOTNFNjk0NkZCMEEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NzM3OTMyN0QyMUFFMTFFNzlCNkNDOTNFNjk0NkZCMEEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3Mzc5MzI3QTIxQUUxMUU3OUI2Q0M5M0U2OTQ2RkIwQSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3Mzc5MzI3QjIxQUUxMUU3OUI2Q0M5M0U2OTQ2RkIwQSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuO9MRsAAAAGUExURX++/wAAAC7h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lfYNuF7H+5u+AdfbeH/VN+B6GW++xTfgmsn7y74B16t4f9s34HoTb75V5v1134Ar7RtwvYf3Bb4B12t4X+EbcL2FN9/iG3DN5H2Nb8D1Dt4X+QZcr+B9lW/A9Qbel/kGXC/gfZ1vwPU8b77FN+CayftK34Drad6X+gZcD/O+1jfgepb3xb4B16O8r/YNuJ7kzbfKvC/3Dbge5H29b8CV9g24HuN9h2/A9RTvW3wDrod43+MbcD3D+ybfgOsR3nf5BlxP8L7NN+B6gPd9vgHX/bxv9A24bud9p2/AdTfvW30Drpt53+sbcN3L+2bfgOvmF/UDuLK8b/cNON5p34DjnfYNON5p34DjnfYNON5p34DjnfYNON5p34DTnfYNON5p34Tj3fYNON5p34DjnfYNON5p34DjnfYNON5p34TT3fYNON5p34DjnfYNON5p34DjnfYNON5p34TT3fYNON5p34DjnfYNON1p34Tj3fYNON5p34DjnfZNON1t34DjnfYNON5p34DTnfZNON5t34DjnfZNON1t34DjnfYNON1p34Tj3fYNON5p34TT3fYNON5p34TT3fYNON5p34TT3fYNON5p34TT3fYNON5p34TT3fYNON1p34Tj3fZNON1t34DjnfZNON1t34TT3fYNON1p34Tj3fZNON1t34TT3fYNON5p34TT3fZNON1t34TT3fZNON1t34TT3fZNON1t34TT3fZNON1t34TT3fZNON1t34TT3fZNON1t34TD3faNON1x34Rv1133Tfhu3X3fhC/GvcI34nt1L/GN+E7ci3wTvlH3Jt+Ir8O9zTfhy3Sv872e+Lq1PwuDm2/E4eYbcbj5JhxuvhGnm2/E4eabcbb5DhO3J99V43bkO0vcgnxXjVuO76pxi/EdNW4ovqvI7cN31bhd+G4iNwbfUeUW4Lup3NX5Tip3aL6Tzl2W7yB0d+S7hd2xrup/AgwAN4QchH7xn5YAAAAASUVORK5CYII=);width: 30px;height: 30px;-webkit-background-size: 100%;background-size: 100%;z-index: 1001;" id="$backtotop"></div>
+    <script>
+        !(function () {
+            var Animate = function (dom) {
+                this.startTime = 0;
+                this.startPos = 0;
+                this.endPos = 0;
+                this.duration = null;
+                if (!this.start) {
+                    Animate.prototype.start = function (endPos, duration) {
+                        this.startTime = +new Date;
+                        this.startPos = document.body.scrollTop;
+                        this.endPos = 0; 
+                        this.duration = duration;
+                        var self = this;
+                        var timeId =
+                            setInterval(function () {
+                                if (self.step() === false) {
+                                    clearInterval(timeId);
+                                }
+                            }, 19);
+                    }; Animate.prototype.step = function () {
+                        var t = +new Date;
+                        if (t >= this.startTime + this.duration) {
+                            this.update(this.endPos); return false;
+                        }
+                        var pos = function (t, b, c, d) {
+                            return c * t / d + b;
+                        };
+                        this.update(pos(t - this.startTime,
+                            this.startPos,
+                            this.endPos - this.startPos,
+                            this.duration));
+                    }; Animate.prototype.update = function (pos) {
+                        document.body.scrollTop = pos;
+                    };
+                };
+            };
+            document.getElementById("$backtotop").onclick = function () {
+                var animate = new Animate();
+                animate.start(0, 300);
+            };
+        })();
+    </script>
+</body>
+</html>

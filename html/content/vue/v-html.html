@@ -1,0 +1,21 @@
+﻿<html  ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+</head>
+<body>
+    <div id="app">
+        <p v-html="rawHtml">{{ rawHtml }}</p>
+        <p>{{ rawHtml }}</p>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                rawHtml: '<h1>Hello Vue.js!</h1>'
+            }
+        })
+    </script>
+</body>
+</html>

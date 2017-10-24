@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+    <title>测试demo</title>
+</head>
+<body>
+    <button id="demo">js文件</button>
+    <button id="demo1">js模块</button>
+    <script type="text/javascript">
+        //异步加载文件，支持所有浏览器
+        document.getElementById("demo").onclick = function () {
+            createScript("../../js/jquery-1.8.3.min.js");
+        }
+
+        function createScript(url) {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = url;
+            document.body.appendChild(script);
+        }
+
+
+        //这里首先会尝试标准的DOM方法，因为除了IE（在IE中会抛出错误），所有浏览器都支持这种方法，如果抛出错误则说明是IE，于是就必须使用tezt属性了
+        document.getElementById("demo1").onclick = function () {
+            createModule("function sayHi(){alert('Hi !')}");
+        }
+
+        function createModule(code) {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            try {
+                script.appendChild(document.createTextNode(code));
+            } catch (ex) {
+                script.text(code);
+            }
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+</html>

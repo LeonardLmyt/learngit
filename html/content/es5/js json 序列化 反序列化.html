@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js json 序列化 反序列化</title>
+</head>
+<body>
+    <script>
+        /*
+            ES5提供一个全局的JSON对象，用来序列化(JSON.stringify)和反序列化(JSON.parse)对象为JSON格式。
+            对于老的浏览器，可以考虑使用Douglas Crockford的json2.js, 可以让旧的浏览器实现同样的功能（原始支持功能测试后）。
+            JSON.parse(text [, reviver])
+            JSON.parse接受文本(JSON格式)并转换成一个ECMAScript值。该可选的reviver参数是有带有key和value两个参数的函数，其作用于结果——让过滤和转换返回值成为可能。
+        */
+        var result = JSON.parse('{"a": 1, "b": "2"}');
+        console.log('JSON.parse:', result);
+
+
+        var result = JSON.parse('{"a": 1, "b": "2"}', function (key, value) {
+            if (typeof value == 'string') {
+                return parseInt(value);
+            } else {
+                return value;
+            }
+        })
+
+        console.log('JSON.parse: --> reviver 过滤器', result);
+
+
+        /*
+            JSON.stringify(value [, replacer [, space]])
+            JSON.stringify允许作者接受一个ECMAScript值然后转换成JSON格式的字符串。 在其最简单的形式中，JSON.stringify接受一个值返回一个字符串
+        */
+
+        var mike = JSON.stringify({ mike: "taylor" })
+        console.log('JSON.stringify:', mike);
+
+
+        /*
+            如果我们需要改变值字符串化的方式，或是对我们选择的提供过滤，我们可以将其传给replacer函数。例如，我们想过滤出即将被字符串化的对象中值为13的属性：
+
+            如果replacer方法返回undefined, 则键值对就不会包含在最终的JSON中。我们同样可以传递一个space参数以便获得返回结果的可读性帮助。space参数可以是个数字，
+            表明了作缩进的JSON字符串或字符串每个水平上缩进的空格数。如果参数是个超过10的数值，或是超过10个字符的字符串，将导致取数值10或是截取前10个字符。
+        */
+
+        var luckyNums = JSON.stringify({"first": 7,"second": 14,"third": 13}, function (key, value) {
+            if (value == 13) {
+                return undefined;
+            } else {
+                return value;
+            }
+        },4);
+        console.log('JSON.stringify: --> replacer 过滤器', luckyNums);
+    </script>
+</body>
+</html>

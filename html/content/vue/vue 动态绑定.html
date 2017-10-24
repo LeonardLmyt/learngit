@@ -1,0 +1,37 @@
+﻿<html ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script type="text/javascript" src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{ site }}</p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name: 'Google',
+                url: 'http://www.google.com'
+            },
+            computed: {
+                site: {
+                    // getter
+                    get: function () {
+                        return this.name + ' ' + this.url
+                    },
+                    // setter
+                    set: function (newValue) {
+                        var names = newValue.split(' ')
+                        this.name = names[0]
+                        this.url = names[names.length - 1]
+                    }
+                }
+            }
+        })
+        // 调用 setter， vm.name 和 vm.url 也会被对应更新
+        // vm.site = '菜鸟教程 http://www.runoob.com';
+    </script>
+</body>
+</html>

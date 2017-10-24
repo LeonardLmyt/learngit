@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <link href="../../css/frameIp.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="demo">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <style>
+        .demo{width: 100%;overflow: hidden;}
+        .demo li{width: 100%;overflow: hidden;height: 50px;background-color: #fff;border-bottom: 1px solid #ddd;}
+    </style>
+    <script type="text/javascript">
+       $(document).ready(function(){
+           $(".demo li").on('touchstart touchmove', function (e) {
+               $(this).css("background-color", "#dddddd");
+           }).on('touchend touchmove', function (e) {
+               $(this).css("background-color", "#ffffff");
+           })
+	   })
+    </script>
+</body>
+</html>

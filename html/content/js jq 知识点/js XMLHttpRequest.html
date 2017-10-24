@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XMLHttpRequest</title>
+</head>
+<body>
+    <script type="text/javascript">
+        /*
+            IE5是第一款引入XHR对象的浏览器，在IE5中，XHR对象是通过MSXML库中的一个ActiveX对象实现的，因此，在IE中可能会遇到三种不同版本的
+            XHR对象，即MSXML2.XMLGttp、MSXML2.XMLHttp.3.0和MSXML.Http.6.0。要使用MSXML库汇总的XHR对象则需要编写一个能力检测的方法
+        */
+        function createXHR() {
+            if (typeof XMLHttpRequest != "undefined") {
+                return new XMLHttpRequest();
+            } else if (typeof ActiveXObject != "undefined") {
+                if (typeof arguments.callee.activeXString != "string") {
+                    var versions = ["MSXML2.XMLHttp.6.0", "MSMSL2.XMLHttp.3.0", "MSMXML2.XMLHttp"],
+                        i, len;
+                    for (i = 0, len = versions.length; i < len; i++) {
+                        try {
+                            new ActiveXObject(versions[i]);
+                            arguments.callee.activeXString = versions[i];
+                            break;
+                        } catch (ex) {
+
+                        }
+                    }
+                }
+                return new ActiveXObject(arguments.callee.activeXString);
+            } else {
+                throw new Error("No XHR object available.");
+            }
+        }
+
+        /*
+            status:一般来说可以将HTTP状态代码为200作为成功的标志，状态为304表示请求资源并没有被修改，可以直接读取缓存数据
+            （有的浏览器会错误的报告204状态代码，IE中的XHR的ActiveX版本会将204设置为1223，而IE中原生的XHR则会将204规范为200.
+            Open会在取得204时报告status的值为0）
+            必须在调用open()之前指定onreadystatechang事件处理程序才能确保跨浏览器兼容性
+        */
+        var xhr = createXHR();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                    alert(xhr.responseText);
+                } else {
+                    alert("Requset was unsuccessful:" + xhr.status);
+                }
+            }
+        }
+        xhr.open("get", "example.txt", true);
+        xhr.send(null);
+
+        /*
+            在接收到响应之前还可以调用about()方法来取消异步请求，调用这个方法后，XHR对象会触发事件，而且也不在允许访问任何与
+            响应有关的对象属性，在终止请求之后，还应该对XHR对象进行解引用操作，由于内存原因，不建议重用XHR对象
+        */
+        xhr.abort();
+
+        /*
+            使用GET请求经常会发生的一个错误，就是查询字符串的格式有问题。查询字符串中每个参数的名称都必须使用encodeURIComponent()
+            进行编码，然后才能放到URL的末尾；而且所有的名-值对儿都必须由和号（&）分割，可以用一下方法进行操作
+            接收三个参数 要添加的URL、参数的名称和参数的值
+        */
+        function AddURLParam(url, name, value) {
+            url += (url.indexOf("?") == -1 ? "?" : "&");
+            url += encodeURIComponent(name) + "=" + encodeURIComponent(value);
+            return url;
+        }
+
+        /*
+           使用post请求需要设置请求头，可以模仿表单提交：首先将Content-Type头部信息设置为application/x-www-form-urlencoded,
+           也就是表单提交是的内容类型
+        */
+        xhr.open("post", "example.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var form = document.getElementById("user-info");
+        xhr.send(serialize(form));
+
+        /*  
+            表单序列化方法serialize(form)
+        */
+        function serialize(form) {
+            var parts = [],
+                field = null,
+                i,
+                len,
+                j,
+                optLen,
+                option,
+                optValue;
+            for (i = 0, len = form.elements.length; i < len; i++) {
+                field = form.elements[i];
+                switch (field.type) {
+                    case "select-one":
+                    case "select-multiple":
+                        if (field.name.length) {
+                            for (j = 0, optLen = field.options.length; j < optLen; j++) {
+                                option = field.options[j];
+                                if (option.selected) {
+                                    optValue = "";
+                                    if (option.hasAttribute) {
+                                        optValue = (option.hasAttribute("value") ? option.value : option.text);
+                                    } else {
+                                        optValue = (option.attributes["value"].specified ? option.value : option.text);
+                                    }
+                                    parts.push(encodeURIComponent(field.name) + "=" + encodeURIComponent(optValue));
+                                }
+                            }
+                        }
+                        break;
+
+                    case undefined: //字段集
+                    case "file": //文件输入
+                    case "submit": //提交按钮
+                    case "reset": //重置按钮
+                    case "button": //自定义按钮
+                        break;
+                    case "radio": //单选按钮
+                    case "checkbox": //复选框
+                        if (!field.checked) {
+                            break;
+                        }
+                        /* 执行默认操作 */
+                    default:
+                        //不包含没有的名称的表单字段
+                        if(field.name.length){
+                            parts.push(encodeURIComponent(field.name) + "+" + encodeURIComponent(field.value));
+                        }
+                }
+            }
+            return parts.join("&");
+        }
+
+
+        /*
+            FormData为序列化表单以及创建与表单格式相同的数据（用于通过XHR传输）提供了便利
+            主流浏览器的较新版本都已经支持这个对象了，比如Chrome 7+、Firefox 4+、IE 10+、Opera 12+、Safari 5+
+            使用FormData的最大优点就是我们可以异步上传一个二进制文件.而且可以不必明确地在XHR对象上设置请求头
+        */
+        var data = new FormData();
+        data.append("name", "Nicoll");
+
+        var data = new FormData(document.forms[0]);
+
+        /*
+            IE8为XHR对象添加了一个timeout属性，表示请求在等待响应多少毫秒之后就终止，IE8+是唯一支持超时的浏览器
+        */
+        xhr.timeout = 1000;
+        xhr.ontimeout = function () {
+            alert("Request did not return in a second");
+        }
+
+
+        /*
+            进度事件
+            loadstart :在接收到响应数据的第一个字节时触发
+            progress:在接收响应期间持续不间断的触发
+            error：在请求发生错误时触发
+            abort:在因为调用about()方法而终止连接时触发
+            load：在接收到完整的响应数据时触发
+            loadend：在通信完成或者触发error、abort或者load事件后触发
+            请求从loadstart事件开始，接下来是一个或多个progress事件，然后触发error、abort或者load事件
+            中的一个，最后触发loadend事件
+            支持前5个时间的浏览器有ff3.5+,Safari4+,Chrome、IOS版Safari和Android版WebKit。opera11+，
+            IE8+只支持load事件，目前没有浏览器支持loadend事件
+        */
+    </script>
+</body>
+</html>

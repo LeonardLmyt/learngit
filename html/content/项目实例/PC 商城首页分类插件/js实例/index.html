@@ -1,0 +1,142 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>js商城首页分类</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no,maximum-scale=1.0">
+    <style>
+        body,html{background-color:#eabc80;}
+        * {margin: 0;padding: 0;}
+        #nav {width: 220px;height: 300px;background-color: rgba(255, 255, 255, 0.8);}
+        #nav li {width: 220px;line-height: 50px;height: 50px;}
+        .nav_main{position: relative;width: 160px;margin: 0 30px;border-bottom: 1px #fff solid;}
+        #nav li:last-child .nav_main{border-bottom:none;}
+        #nav li:hover {background-color: #ddd;}
+        .nav_sub {position: absolute;width: 500px;height: 300px;top: 0;right: -530px;background-color: #ddd;display: none;}
+        .sorts{width: 90px;float: left;}
+        .nav_sub_title{display: block;width: 100%;text-align: center;}
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <ul>
+            <li>
+                <div class="nav_main" id="a1" onmouseenter="enter(this)" onmouseleave="leave(this)">
+                    <span class="nav_sub_title">哈哈</span>
+                    <div class="nav_sub" id="ba1">
+                        <div class="sorts">分类</div>
+                        <div class="sorts">分类</div>
+                        <div class="sorts">分类</div>
+                        <div class="sorts">分类</div>
+                        <div class="sorts">分类</div>
+                        <div class="sorts">分类</div>
+                        <div class="sorts">分类</div>
+                        <div class="sorts">分类</div>
+                        <div class="sorts">分类</div>
+                        <div class="sorts">分类</div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="nav_main" id="a2" onmouseenter="enter(this)" onmouseleave="leave(this)">
+                    <span class="nav_sub_title">哈哈</span>
+                    <div class="nav_sub" id="ba2">
+                        <div class="sorts">分类1</div>
+                        <div class="sorts">分类1</div>
+                        <div class="sorts">分类1</div>
+                        <div class="sorts">分类1</div>
+                        <div class="sorts">分类1</div>
+                        <div class="sorts">分类1</div>
+                        <div class="sorts">分类1</div>
+                        <div class="sorts">分类1</div>
+                        <div class="sorts">分类1</div>
+                        <div class="sorts">分类1</div>
+                        <div class="sorts">分类1</div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="nav_main" id="a3" onmouseenter="enter(this)" onmouseleave="leave(this)">
+                    <span class="nav_sub_title">哈哈</span>
+                    <div class="nav_sub" id="ba3">
+                        <div class="sorts">分类2</div>
+                        <div class="sorts">分类2</div>
+                        <div class="sorts">分类2</div>
+                        <div class="sorts">分类2</div>
+                        <div class="sorts">分类2</div>
+                        <div class="sorts">分类2</div>
+                        <div class="sorts">分类2</div>
+                        <div class="sorts">分类2</div>
+                        <div class="sorts">分类2</div>
+                        <div class="sorts">分类2</div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="nav_main" id="a4" onmouseenter="enter(this)" onmouseleave="leave(this)">
+                    <span class="nav_sub_title">哈哈</span>
+                    <div class="nav_sub" id="ba4">
+                        <div class="sorts">分类3</div>
+                        <div class="sorts">分类3</div>
+                        <div class="sorts">分类3</div>
+                        <div class="sorts">分类3</div>
+                        <div class="sorts">分类3</div>
+                        <div class="sorts">分类3</div>
+                        <div class="sorts">分类3</div>
+                        <div class="sorts">分类3</div>
+                        <div class="sorts">分类3</div>
+                        <div class="sorts">分类3</div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="nav_main" id="a5" onmouseenter="enter(this)" onmouseleave="leave(this)">
+                    <span class="nav_sub_title">哈哈</span>
+                    <div class="nav_sub" id="ba5">
+                        <div class="sorts">分类4</div>
+                        <div class="sorts">分类4</div>
+                        <div class="sorts">分类4</div>
+                        <div class="sorts">分类4</div>
+                        <div class="sorts">分类4</div>
+                        <div class="sorts">分类4</div>
+                        <div class="sorts">分类4</div>
+                        <div class="sorts">分类4</div>
+                        <div class="sorts">分类4</div>
+                        <div class="sorts">分类4</div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="nav_main" id="a6" onmouseenter="enter(this)" onmouseleave="leave(this)">
+                    <span class="nav_sub_title">哈哈</span>
+                    <div class="nav_sub" id="ba6">
+                        <div class="sorts">分类5</div>
+                        <div class="sorts">分类5</div>
+                        <div class="sorts">分类5</div>
+                        <div class="sorts">分类5</div>
+                        <div class="sorts">分类5</div>
+                        <div class="sorts">分类5</div>
+                        <div class="sorts">分类5</div>
+                        <div class="sorts">分类5</div>
+                        <div class="sorts">分类5</div>
+                        <div class="sorts">分类5</div>
+                        <div class="sorts">分类5</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        function enter(event) {
+            var e = event || window.event,
+                i =document.getElementById("b" + e.id);
+            i.style.top = -document.getElementById(e.id).offsetTop + "px";
+            i.style.display = "block";
+        }
+        function leave(event) {
+            var e = event || window.event;
+            document.getElementById("b" + e.id).style.display = "none";
+        }
+    </script>
+</body>
+</html>

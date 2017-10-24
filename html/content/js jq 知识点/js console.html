@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body style="height:500px;">
+    <script src="../../js/public.js"></script>
+    <script>
+        console.log("这是提示"); //提示
+
+        //%O格式的值是一个可扩展的JavaScript对象。
+        //%c根据你提供的CSS样式的格式输出字符串
+        console.log("%c这是提示", "color:red"); //样式
+        console.log("%c", "font-size:60px;background:url('../images/car.png') left top no-repeat;"); //样式
+
+        console.info("这是info"); //提示
+        console.debug("这是debug");  //排错
+        console.warn("这是warn"); //警告
+        console.error("这是error"); //错误
+
+        //支持字符（%s）、整数（%d或%i）、浮点数（%f）和对象（%o）四种。
+        console.log("%d年%d月%d日", 2011, 3, 26);
+        console.log("圆周率是%f", 3.1415926);
+        var dog = {};
+        dog.name = "大毛";
+        dog.color = "黄色";
+        console.log("%o", dog);
+
+
+        //分组
+        console.group("第一组信息");
+        console.log("第一组第一条");
+        console.log("第一组第二条");
+        console.groupEnd();
+        console.group("第二组信息");
+        console.log("第二组第一条");
+        console.log("第二组第二条");
+        console.groupEnd();
+
+        //显示节点包含的代码。
+        var table = document.getElementById("div");
+        console.dirxml(table);
+
+        //用来判断一个表达式或变量是否为真。如果结果为否，则在控制台输出一条相应信息，并且抛出一个异常。
+        var result = 1;
+        console.assert(result);
+        var year = 2000;
+        console.assert(year == 2011);
+
+        //用来追踪函数的调用轨迹。
+        var x = add3(1, 1);
+        //用来追踪函数的调用轨迹。
+        function add(a, b) { console.trace(); return a + b; }
+        function add3(a, b) { return add2(a, b); }
+        function add2(a, b) { return add1(a, b); }
+        function add1(a, b) { return add(a, b); }
+
+
+        //计算代码花去的时间
+        console.time("计时器一");
+        for (var i = 0; i < 1000; i++) {
+            for (var j = 0; j < 1000; j++) { }
+        }
+        console.timeEnd("计时器一");
+
+        //性能分析（Profiler）就是分析程序各个部分的运行时间，找出瓶颈所在，使用的方法是console.profile()。
+        console.profile('性能分析器一');
+        Foo();
+        console.profileEnd();
+        //性能分析（Profiler）就是分析程序各个部分的运行时间，找出瓶颈所在，使用的方法是console.profile()。
+        function Foo() { for (var i = 0; i < 10; i++) { funcA(1000); } funcB(10000); }
+        function funcA(count) { for (var i = 0; i < count; i++) { } }
+        function funcB(count) { for (var i = 0; i < count; i++) { } }
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js原生nav点击</title>
+    <link href="../../css/framePc.css" rel="stylesheet" />
+</head>
+<body>
+    <style>
+        #nav {width: 800px;overflow: hidden;background-color: #fff;}
+        #nav li {width: 20%;display: inline-block;float: left;text-align: center;height: 40px;line-height: 40px;background-color: #ddd;cursor: pointer;}
+        #nav-ok, #nav li:hover {background-color: #666 !important;}
+    </style>
+    <div id="nav">
+        <ul>
+            <li>nav1</li>
+            <li>nav2</li>
+            <li>nav3</li>
+            <li>nav4</li>
+            <li>nav5</li>
+        </ul>
+    </div>
+    <script>
+        /*
+            2016-10-30
+            兼容所有浏览器，包括IE5+，FireFox，opera,chrome，360，搜狗等主流浏览器
+        */
+        console.time(1);
+        var nav = document.getElementById("nav").childNodes;
+        for (var i = 0, j = nav.length; i < j; i++) {
+            if (nav[i].nodeType === 1) {
+                var navsub = document.getElementById("nav").childNodes[i].childNodes;
+                for (var a = 0, b = navsub.length; a < b; a++) {
+                    if (navsub[a].nodeType === 1) {
+                        addHandler(navsub[a], "click", (function (event) {
+                            for (var o = 0, p = navsub.length; o < p; o++) {
+                                if (navsub[o].nodeType === 1) {
+                                    navsub[o].setAttribute("id", "");
+                                }
+                            }
+                            this.setAttribute("id", "nav-ok");
+                        }))
+                    }
+                }
+            }
+        }
+
+        function addHandler(element, type, handler) {
+            if (element.addEventListenter) {
+                element.addEventListenter(type, handler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent("on" + type, function () { handler.call(element) });
+            } else {
+                element["on" + type] = handler;
+            }
+        }
+        console.timeEnd(1);
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <link href="../../css/framePc.css" rel="stylesheet" />
+    <style>
+        @import url(../../css/demo.css);
+    </style>
+</head>
+<body>
+    <div>加载外部文件</div>
+     <!-- 
+          css加载外部文件的两种css写法
+         第一种 link ********************link语法结构
+         <link href="CSSurl路径" rel="stylesheet" type="text/css" />    
+
+         Html link标签说明
+         此标签是引入CSS文件link标签，只要设置好路径即可。
+
+         第二种 @import *********************** @import语法结构
+         @import + 空格+ url(CSS文件路径地址);
+         1）、在html中
+         <style type="text/css">
+         @import url(CSS文件路径地址);
+         </style>
+
+         2）、在css中
+         直接使用
+         @import url(CSS文件路径地址);
+
+         *********************************************************************
+         首先link和import语法结构不同，前者<link>是html标签，只能放入html源代码中使用，后者可看作为css样式，
+         作用是引入css样式功能。import在html使用时候需要<style type="text/css">标签，同时可以直接“@import url(CSS文件路径地址);”
+         放如css文件或css代码里引入其它css文件。本质上两者使用选择区别不大，但为了软件中编辑布局网页html代码，一般使用link较多，也推荐使用link。
+      -->
+</body>
+</html>

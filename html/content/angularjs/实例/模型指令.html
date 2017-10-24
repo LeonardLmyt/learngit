@@ -1,0 +1,20 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>模型指令</title>
+    <script src="../../../js/angular/angular.min.js"></script>
+</head>
+<body>
+   <div ng-app="myApp" ng-controller="myCon">
+       <h1 ng-bind="name"></h1>
+       <h1>{{name}}</h1>
+       <input ng-model="name" />
+   </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCon", function ($scope) {
+            $scope.name = "Mr.L";
+        })
+    </script>
+</body>
+</html>

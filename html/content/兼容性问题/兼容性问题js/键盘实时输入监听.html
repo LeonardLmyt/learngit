@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        /*input是标准的浏览器事件，一般应用于input元素，当input的value发生变化就会发生，无论是键盘输入还是鼠标，propertychange，只要当前对象属性发生改变。（IE专属的）
+        oninput 和 onpropertychange 这两个事件在 IE9 中都有个小BUG，那就是通过右键菜单菜单中的 剪切 和 删除 命令删除内容的时候不会触发，而 IE 其他版本都是正常的，目前还没有很好的解决方案。*/
+
+        $('#paymoney').bind('input propertychange', function () {
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{margin:0;}ol,li,ul{margin:0; padding:0;}
+    </style>
+    <title>测试demo</title>
+</head>
+<body>
+    <button id="button">button</button>
+    <div style="width:100%;height:50px;background:red"></div>
+    <script type="text/javascript">
+        /*
+            通过parent.demo5.frameElement获取到父页面的iframe的框架集，或者
+            parent.document.getElementById("demo5")这样获得父页面框架集，
+            自适应的办法主要是获取当前文档的高度赋值给父页面的iframe的元素
+
+            ***************************************************************
+            发现appendChild在IE8以下居然不兼容，寻找解决办法
+        */
+
+        var button = document.getElementById("button");
+        button.onclick = function () {
+            var i = document.createElement("div");
+            i.innerHTML = "<div style=\"width:100%;height:50px;background:red;\"></div>";
+            document.body.appendChild(i);
+            AdaptHeight();
+        }
+
+        //自适应高度办法
+        function AdaptHeight() {
+            var h = document.compatMode == "CSS1Compat" ? document.documentElement.scrollHeight : document.body.scrollHeight;
+            parent.demo5.frameElement.height = h + "px";
+            //parent.document.getElementById("demo5").height = h + "px";
+        }
+    </script>
+</body>
+</html>

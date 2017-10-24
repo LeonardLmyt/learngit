@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>鼠标焦点显示</title>
+    <style>
+        body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{margin:0;}
+        ol,li,ul{margin:0; padding:0;}
+        #main{position:relative;width: 100px;height: 100px;background: red;cursor:pointer;}
+        #sub{position: absolute;top: 20px;left: 100px;width: 80px;height: 80px;background: green;display:none;}
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="sub"></div>
+    </div>
+    <script>
+        //鼠标移到到一个块显示另外一个块元素出来
+
+        //var main = document.getElementById("main");
+        //var sub = document.getElementById("sub");
+        //main.onmouseenter = function () {
+        //    sub.style.display = "block";
+        //}
+        //main.onmouseleave = function () {
+        //    sub.style.display = "none";
+        //}
+
+        function mouseHover(subdom,maindom) {
+            this.subdom = subdom;
+            this.maindom = maindom;
+            if (typeof this.createmouse != 'function') {
+                mouseHover.prototype.createmouse = function () {
+                    var that = this;
+                    this.maindom.onmouseenter = function () {
+                        that.subdom.style.display = "block";
+                    }
+                    this.maindom.onmouseleave = function () {
+                        that.subdom.style.display = "none";
+                    }
+                }
+            }
+        }
+
+        var main = document.getElementById("main");
+        var sub = document.getElementById("sub");
+        (new mouseHover(sub, main)).createmouse();
+    </script>
+</body>
+</html>

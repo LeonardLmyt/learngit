@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js with操作</title>
+</head>
+<body>
+    <script type="text/javascript">
+        /*
+           W3C的解释 ： with 语句用于设置代码在特定对象中的作用域。
+           有时候，我在一个程序代码中，多次需要使用某对象的属性或方法，照以前的写法，都是通过:对象.属性或者对象.
+           方法这样的方式来分别获得该对象的属性和方法，着实有点麻烦，学习了with语句后，可以通过类似如下的方式来实现：
+        */
+
+        var i = Math.cos(3 * Math.PI) + Math.sin(Math.LN10);
+        var j = Math.tan(14 * Math.E);
+        console.log(i);
+
+        with (Math) {
+            var x = cos(3 * PI) + sin(LN10);
+            var y = tan(14 * E);
+            console.log(x);
+        }
+    </script>
+</body>
+</html>

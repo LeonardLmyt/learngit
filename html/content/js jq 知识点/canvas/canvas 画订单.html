@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../../../css/framePc.css" rel="stylesheet" />
+    <title>canvas 画订单</title>
+</head>
+<body>
+    <style>
+        #canvasmain{position: relative;width: 1000px;height: 500px;}
+        #canvas{position: absolute;top: 0;left: 0;}
+        #canvassub{position: absolute}
+        #tip{position: absolute;min-width: 50px;max-width: 70px;background-color: rgba(0, 0, 0, 0.77);color: #fff;text-align: center;border-radius: 6px;-webkit-border-radius: 6px;-moz-border-radius: 6px;pointer-events: none;}
+        #a,#b{cursor:pointer;}
+    </style>
+    <div id="canvasmain">
+        <canvas id="canvas">
+            你的浏览器居然不支持Canvas？！赶快换一个吧！！
+        </canvas>
+        <canvas id="canvassub"></canvas>
+        <div id="tip"></div>
+    </div>
+    
+    <div>
+        <p id="line">折线图</p>
+        <p id="bar">条形图</p>
+    </div>
+    <script>
+        //http://blog.csdn.net/clh604/article/details/8536059   http://www.w3school.com.cn/tags/html_ref_canvas.asp 参考教材
+
+        function createCanvas() {
+            //canvas图形
+            var canvas = document.getElementById("canvas");
+            canvas.width = 1000;
+            canvas.height = 500;
+            var context = canvas.getContext("2d");
+            if (!canvas.getContext)
+                return;
+
+            //json数据集
+            this.json = [
+                { key: 1, "number": 0 },
+                { key: 2, "number": 14 },
+                { key: 3, "number": 25 },
+                { key: 4, "number": 1 },
+                { key: 5, "number": 98 },
+                { key: 6, "number": 11 },
+                { key: 7, "number": 21 },
+                { key: 8, "number": 32 },
+                { key: 9, "number": 23 },
+                { key: 10, "number": 36 },
+                { key: 11, "number": 1 },
+                { key: 12, "number": 52 },
+                { key: 13, "number": 65 },
+                { key: 14, "number": 45 },
+                { key: 15, "number": 86 },
+                { key: 16, "number": 10 },
+                { key: 17, "number": 45 },
+                { key: 18, "number": 54 },
+                { key: 19, "number": 35 },
+                { key: 20, "number": 10 },
+                { key: 21, "number": 64 },
+                { key: 22, "number": 45 },
+                { key: 23, "number": 35 },
+                { key: 24, "number": 23 },
+                { key: 25, "number": 24 },
+                { key: 26, "number": 10 },
+                { key: 27, "number": 43 },
+                { key: 28, "number": 66 },
+                { key: 29, "number": 25 },
+                { key: 30, "number": 44 },
+                { key: 31, "number": 100 }
+            ];
+
+            this.arrnumber = []; //json,number数集合
+            this.maxnumber = 0; //初始化this.arrnumber最大值
+            this.wframe = 100; //订单网格左边距
+            this.hframe = 50; //订单网格上边距
+            this.wlocation = canvas.width - 100; //网格宽度
+            this.hlocation = canvas.height - 100; //网格高度
+            this.wlocationAverage = this.wlocation / this.json.length; //网格宽度平均值
+            //获取json,number数集合并返回最大或者最小值
+            this.moduleArrNumber = function (type) { 
+                for (var i = 0, j = this.json.length; i < j; i++) {
+                    this.arrnumber.push(this.json[i].number);
+                }
+                if (type === 'max')
+                    return Math.max.apply(null, this.arrnumber);
+                else
+                    return Math.min.apply(null, this.arrnumber);
+            }
+            this.type = 'line'; //初始化图型类型为折线
+
+            //设置鼠标移动提示canvas层的大小位置
+            var canvassub = document.getElementById("canvassub"); 
+            canvassub.width = this.wlocation;
+            canvassub.height = this.hlocation;
+            var contextsub = canvassub.getContext("2d");
+            canvassub.style.top = this.hframe + "px";
+            canvassub.style.left = this.wframe + "px";
+
+            //根据json生成网格等
+            if (typeof this.moduleCanvas != 'function') {
+                createCanvas.prototype.moduleCanvas = function () {
+                    context.fillStyle = "black";
+                    context.font = "30px Arial";
+                    context.textAlign = "left";
+                    context.textBaseline = "alphabetic";
+                    context.fillText("9月份订单", 10, 30);
+                    context.strokeStyle = '#9D9D9D';
+                    context.lineWidth = 1;
+                    context.font = "italic small-caps bold 14px Arial";
+                    for (var i = 0; (k = i * (this.hlocation / 10)) <= this.hlocation; i++) {
+                        this.moduleArrNumber('max') > 10 ? (this.moduleArrNumber('max') > 100 ? (this.moduleArrNumber('max') > 1000 ? (this.moduleArrNumber('max') > 1000 ? this.maxnumber = 10000 : this.maxnumber = 1000) : this.maxnumber = 100) : this.maxnumber = 10) : this.maxnumber = 1;
+                        context.beginPath();
+                        context.moveTo(this.wframe, k + this.hframe);
+                        context.lineTo(this.wlocation + this.wframe, k + this.hframe);
+                        context.stroke();
+                        context.textBaseline = "middle";
+                        context.fillText((10 - i) * this.maxnumber, this.wframe - 50, k + this.hframe);
+                    }
+                    for (var j = 0; (k = j * ((this.wlocation - 1) / this.json.length)) <= this.wlocation; j++) {
+                        context.beginPath();
+                        context.moveTo(k + this.wframe, this.hframe);
+                        context.lineTo(k + this.wframe, this.hlocation + this.hframe);
+                        context.stroke();
+                        if (this.json.length > j)
+                            context.textAlign = "center",context.fillText(this.json[j].key, k + (this.wlocationAverage / 2 + this.wframe), this.hlocation + this.hframe + 40);
+                    }
+                }
+            }
+
+            //折线图
+            if (typeof this.lineChart != 'function') {
+                createCanvas.prototype.lineChart = function () {
+                    this.type = 'line';
+                    context.strokeStyle = 'red';
+                    context.lineWidth = 2;
+                    var tenmaxnumber = this.maxnumber * 10;
+                    for (var i = 0; i < this.json.length; i++) {
+                        context.beginPath();
+                        context.moveTo(i * this.wlocationAverage + (this.wlocationAverage / 2 + this.wframe), (1 - (this.json[i].number / tenmaxnumber)) * this.hlocation + this.hframe);
+                        if (this.json.length > i + 1)
+                            context.lineTo((i + 1) * this.wlocationAverage + (this.wlocationAverage / 2 + this.wframe), (1 - (this.json[i + 1].number / tenmaxnumber)) * this.hlocation + this.hframe);
+                        context.stroke();
+
+                        context.fillStyle = 'black';
+                        context.textAlign = "center";
+                        context.fillText(this.json[i].number, i * this.wlocationAverage + (this.wlocationAverage / 2 + this.wframe), (1 - (this.json[i].number / tenmaxnumber)) * this.hlocation + this.hframe - 5);
+
+                        context.beginPath();
+                        context.fillStyle = "green";
+                        context.arc(i * this.wlocationAverage + (this.wlocationAverage / 2 + this.wframe), (1 - (this.json[i].number / tenmaxnumber)) * this.hlocation + this.hframe, 3, 0, 360, false);
+                        context.fill();
+                        context.closePath();
+                    }
+                }
+            }
+
+            //条形图
+            if (typeof this.barChart != 'function') {
+                createCanvas.prototype.barChart = function () {
+                    this.type = 'bar';
+                    var tenmaxnumber = this.maxnumber * 10;
+                    for (var i = 0; i < this.json.length; i++) {
+                        context.beginPath();
+                        context.fillStyle = "#F00";
+                        context.fillRect(i * this.wlocationAverage + (this.wlocationAverage / 4 + this.wframe), this.hlocation + this.hframe, this.wlocationAverage / 2, -(this.json[i].number / tenmaxnumber) * this.hlocation);
+                        context.closePath();
+                        context.fillStyle = 'black';
+                        context.textAlign = "center";
+                        context.fillText(this.json[i].number, i * this.wlocationAverage + (this.wlocationAverage / 2 + this.wframe), (1 - (this.json[i].number / tenmaxnumber)) * this.hlocation + this.hframe - 5);
+                    }
+                }
+            }
+
+            //清除canvas层内容
+            if (typeof this.clearRect != 'function') {
+                createCanvas.prototype.clearRect = function () {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    contextsub.clearRect(0,0,canvassub.width,canvassub.height);
+                }
+            }
+        }
+
+        var cc = new createCanvas();
+        cc.moduleCanvas();
+        cc.lineChart();
+
+        var position = 0, positionchange = 0;
+        var canvassub = document.getElementById("canvassub");
+        var contextsub = canvassub.getContext("2d");
+        var tip = document.getElementById("tip");
+
+        //鼠标移动事件
+        document.getElementById("canvassub").onmousemove = function (e) {
+            var e = e || window.event;
+            if (e.offsetX > cc.wframe || e.offsetY > cc.hframe) {
+                positionchange = Math.floor(e.offsetX / cc.wlocationAverage);
+                tip.style.display = "block";
+                tip.innerText = '今天共有' + cc.json[Math.floor(e.offsetX / cc.wlocationAverage)].number + '张订单';
+                tip.setAttribute("style", "top:" + (cc.hlocation - (cc.json[Math.floor(e.offsetX / cc.wlocationAverage)].number / (cc.maxnumber * 10)) * cc.hlocation) + "px;left:" + (parseFloat(Math.floor(e.offsetX / cc.wlocationAverage) + 0.5) * cc.wlocationAverage + cc.wframe) + "px;padding: 3px;transition:all 500ms ease 0s;");
+                if (cc.type === 'line' && position !== positionchange) {
+                    contextsub.clearRect(0,0,cc.wlocation,cc.hlocation);
+                    contextsub.beginPath();
+                    contextsub.fillStyle = "blue";
+                    contextsub.arc((parseFloat(Math.floor(e.offsetX / cc.wlocationAverage) + 0.5) * cc.wlocationAverage), (cc.hlocation - (cc.json[Math.floor(e.offsetX / cc.wlocationAverage)].number / (cc.maxnumber * 10)) * cc.hlocation), 4, 0, 360, false);
+                    contextsub.fill();
+                    contextsub.closePath();
+                    position = Math.floor(e.offsetX / cc.wlocationAverage);
+                }
+                else if (cc.type === 'bar' && position !== positionchange) {
+                    contextsub.clearRect(0, 0, cc.wlocation, cc.hlocation);
+                    contextsub.beginPath();
+                    contextsub.fillStyle = "blue";
+                    contextsub.fillRect((parseFloat(Math.floor(e.offsetX / cc.wlocationAverage) + 0.25) * cc.wlocationAverage), canvassub.height, cc.wlocationAverage * 0.5, -(cc.json[Math.floor(e.offsetX / cc.wlocationAverage)].number / cc.maxnumber / 10) * cc.hlocation);
+                    contextsub.closePath();
+                    position = Math.floor(e.offsetX / cc.wlocationAverage);
+                }
+            }
+        }
+        //鼠标移出事件
+        document.getElementById("canvassub").onmouseout = function () {
+            tip.style.display = "none";
+        }
+
+        document.getElementById("line").onclick = function () {
+            cc.clearRect();
+            cc.moduleCanvas();
+            setTimeout('cc.lineChart()',300); 
+        }
+        document.getElementById("bar").onclick = function () {
+            cc.clearRect();
+            cc.moduleCanvas();
+            setTimeout('cc.barChart()', 300);
+        }
+    </script>
+</body>
+</html>

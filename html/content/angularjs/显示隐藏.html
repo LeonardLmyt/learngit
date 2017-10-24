@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../../css/framePc.css" rel="stylesheet" />
+    <script src="../../../js/angular.min.js"></script>
+    <title>显示隐藏Dom</title>
+</head>
+<body>
+    <!--<div ng-app="myApp" ng-controller='ShowController'>
+        <button ng-click="toggleMenu()">Toggle Menu</button>
+        <ul ng-show='menuState.show'>
+            <li>Stun</li>
+            <li>Disintegrate</li>
+            <li>Erase from history</li>
+        </ul>
+    </div>
+    <script>
+        var myApp=angular.module('myApp',[])
+        myApp.controller('ShowController', function($scope) {
+            $scope.menuState = {
+                show: false
+            }
+            $scope.toggleMenu = function() {
+                $scope.menuState.show = !$scope.menuState.show;
+            }
+        });
+    </script>-->
+
+    <div ng-app ng-controller="ShowController">
+        <p ng-show="visible">显示1</p>
+        <p ng-hide="visible">显示2</p>
+        <button ng-click="toggleMenu()">切换</button>
+    </div>
+    <script>
+        function ShowController($scope) {
+            $scope.visible = false;
+            $scope.toggleMenu = function () {
+                $scope.visible = !$scope.visible;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    <div class="div1">div1</div>
+    <script type="text/javascript">
+        /*
+            selectors API Level 2规范为Element类型新增了一个方法matchesSelector()。这个方法接收一个参数，即css选择符，
+            如果调用元素与该选择符匹配，返回true，否则，返回false
+        */
+        
+        function matchesSelector(element,selector) {
+            if (element.matchesSelector) {
+                return element.matchesSelector(selector);
+            } else if (element.msMatchesSelector) {
+                return element.msMatchesSelector(selector);
+            } else if (element.mozMatchesSelector) {
+                return element.mozMatchesSelector(selector);
+            } else if (element.webkitMatchesSelector) {
+                return element.webkitMatchesSelector(selector);
+            } else {
+                throw new Error("Not supported.");
+            }
+        }
+
+        if (matchesSelector(document.body.querySelector(".div1"), ".div1")) {
+            console.log("yes");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <button id="button">有人想加你为好友</button>
+    <p id="text"></p>
+    <script>
+        /*参考文章http://www.zhangxinxu.com/wordpress/2016/07/know-html5-web-notification/*/
+        if (window.Notification || window.mozNotification || window.webkitNotification) {
+            var button = document.getElementById('button'), text = document.getElementById('text');
+
+            var popNotice = function () {
+                if (Notification.permission == "granted") {
+                    var notification = new Notification("Hi，帅哥：", {
+                        body: '可以加你为好友吗？',
+                        icon: 'http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg',
+                    });
+
+                    notification.onclick = function () {
+                        text.innerHTML = '张小姐已于' + new Date().toTimeString().split(' ')[0] + '加你为好友！';
+                        notification.close();
+                    };
+                }
+            };
+
+            button.onclick = function () {
+                if (Notification.permission == "granted") {
+                    popNotice();
+                } else if (Notification.permission != "denied") {
+                    Notification.requestPermission(function (permission) {
+                        popNotice();
+                    });
+                }
+            };
+        } else {
+            alert('浏览器不支持Notification');
+        }
+        /*兼容性：IE14以及其他桌面浏览器都支持Web Notification，目前移动端的支持情况并不好，Android部分支持，iOS Safari浏览器全军覆没(至9.3版本)：*/
+    </script>
+</body>
+</html>

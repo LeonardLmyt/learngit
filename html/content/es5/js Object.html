@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js Object</title>
+</head>
+<body>
+    <script>
+        /*
+            Object
+            所有对象操作中，如果o不是Object类型，将会抛出TypeError异常。
+
+            Object.getPrototypeOf(o)
+            获取给丁对象的prototype对象。等价于以前的o.__proto__。
+
+            Object.getOwnPropertyDescriptor(o,p)
+            获取指定对象的自身属性描述符。自身属性描述符是指直接在对象上定义（而非从对象的原型继承）的描述符
+
+            Object.getOwnPropertyNames(o)
+            返回对象自己的属性的名称。一个对象的自己的属性是指直接对该对象定义的属性，而不是从该对象的原型继承的属性。对象的属性包括字段（对象）和函数
+
+            Object.create(o,p)
+            创建一个具有指定原型且可选择性地包含指定属性的对象
+
+            Object.defineProperty(o,p,attrs)
+            将属性添加到对象，或修改现有属性的特性
+            //在 defineProperty 中不能 同时 设置访问器 (get 和 set) 和 wriable 或 value，否则会错，就是说想用(get 和 set)，就不能用（wriable 或 value中的任何一个）
+
+            Object.defineProperties(o,props)
+            将一个或多个属性添加到对象，并/或修改现有属性的特性
+
+            Object.seal(o)
+            一个对象在默认状态下，
+            extensible: 可以添加新的属性
+            configurable: 可以修改已有属性的特性
+            Object.seal会改变这两个特性，既不能扩展新属性，也不能修改已有属性的特性。
+            阻止修改现有属性的特性，并阻止添加新属性。
+
+            Object.freeze(o)
+            将对象的每个自有自有属性(own property)做如下操作：
+            属性的writable特性置为false
+            属性的configurable特性置为false
+            同时，该对象将不可扩展。可见，该方法比Object.seal更加严格的限制了对一个对象的未来改动。
+            阻止修改现有属性的特性和值，并阻止添加新属性。
+
+            Object.preventExtensions(o)
+            阻止向对象添加新属性
+
+            Object.isSealed(o)
+            如果无法在对象中修改现有属性的特性，且无法向对象添加新属性，则返回 true
+
+            对象的每个自有属性：如果属性的configurable特性为true，则返回false
+            如果对象为extensible的，那么返回false
+            不满足以上两个条件，则返回true
+
+            Object.isFrozen(o)
+            如果无法在对象中修改现有属性的特性和值，且无法向对象添加新属性，则返回 true
+
+            对每个自有属性，如果该属性的configurable或writable特性为true，则返回false
+            如果对象为extensible的，那么返回false
+            不满足以上两个条件，则返回true
+
+
+            Object.isExtensible(o)
+            返回一个值，该值指示是否可向对象添加新属性
+
+
+            Object.keys(o)
+            返回对象o的所有可枚举(enumerable)属性的名称。
+
+            Object.prototype.isPrototypeOf(v)
+            检查对象是否是位于给定对象v的原型链上。
+
+            Object.prototype.propertyIsEnumerable(p)
+            检查一个对象上的属性p是否可枚举。
+        */
+
+
+        /*
+            **************对象描叙
+                value:属性的值
+                writable:如果为false，属性的值就不能被重写,只能为只读
+                configurable:总开关，一旦为false，就不能再设置他的（value，writable，configurable）
+                enumerable:是否能在for...in循环中遍历出来或在Object.keys中列举出来。
+                get:获取访问器get
+                set:设置访问器set
+                在 descriptor 中不能 同时 设置访问器 (get 和 set) 和 wriable 或 value，否则会错，就是说想用(get 和 set)，就不能用（wriable 或 value中的任何一个）
+        */
+
+        function Fn()
+        {
+            this.a = 1;
+            this.b = function () {
+                return 2;
+            }
+        }
+
+        Fn.prototype.c = function () {
+            console.log(3);
+        }
+
+        var fn = new Fn();
+
+        var object = { a: function () { return 1; }, b: 2 };
+
+        console.log('getPrototypeOf：', Object.getPrototypeOf(fn));
+
+        console.log('getOwnPropertyDescriptor：', Object.getOwnPropertyDescriptor(object, 'a'));
+
+        console.log('getOwnPropertyNames：', Object.getOwnPropertyNames(object));
+
+        console.log('Object.create(proto)',Object.create(object));
+
+        console.log('Object.create(proto, [ propertiesObject ])', Object.create(Object.prototype, {
+            // foo会成为所创建对象的数据属性
+            foo: { writable:true, configurable:true, value: "hello" },
+            // bar会成为所创建对象的访问器属性
+            bar: {
+                configurable: false,
+                get: function() { return 10 },
+                set: function(value) { console.log("Setting `o.bar` to", value) }
+            }
+        }));
+
+        console.log('defineProperty：', Object.defineProperty(object, "c", {
+            enumerable:false,
+            set:function(newValue){
+                console.log("你要赋值给我,我的新值是" + newValue);
+            },
+            get:function(){
+                console.log("你取我的值");
+                return 2; //注意这里，我硬编码返回2
+            }
+        }));
+
+
+        var object_defineProperties = { a: function () { return 1; }, b: 2 };
+        console.log('defineProperties：', Object.defineProperties(object_defineProperties, {
+            newDataProperty: {
+                value: 101,
+                writable: true,
+                enumerable: true,
+                configurable: true
+            },
+            newAccessorProperty: {
+                set: function (x) {
+                    console.log("in property set accessor");
+                    this.newaccpropvalue = x;
+                },
+                get: function () {
+                    console.log("in property get accessor");
+                    return this.newaccpropvalue;
+                },
+                enumerable: true,
+                configurable: true
+            }
+        }));
+
+        var object_seal = { a: function () { return 1; }, b: 2 };
+        console.log('seal：', Object.seal(object_seal), 'delete attr：' + delete object_seal.b);
+        object_seal.b = 3;
+        console.log('seal -->object.b = 3 可修改value：', object_seal.b);
+
+        var object_freeze = { a: function () { return 1; }, b: 2 };
+        console.log('freeze：', Object.freeze(object_freeze), 'delete attr：' + delete object_freeze.b);
+        object_freeze.b = 4;
+        console.log('freeze -->object.b = 4 完全冻结：', object_freeze.b);
+
+        var object_preventExtensions = { a: function () { return 1; }, b: 2 };
+        console.log('preventExtensions：', Object.preventExtensions(object_preventExtensions));
+        object_preventExtensions.c = 2;
+        console.log('preventExtensions --> c设置为2：', object_preventExtensions.c);
+
+        var object_isSealed = { a: function () { return 1; }, b: 2 };
+        console.log('isSealed：', Object.isSealed(object_isSealed));
+        Object.seal(object_isSealed);
+        console.log('isSealed：', Object.isSealed(object_isSealed));
+
+
+        var object_isFrozen = { a: function () { return 1; }, b: 2 };
+        console.log('isFrozen：', Object.isFrozen(object_isFrozen));
+        Object.freeze(object_isFrozen);
+        console.log('isFrozen：', Object.isFrozen(object_isFrozen));
+
+        var object_isExtensible = { a: function () { return 1; }, b: 2 };
+        console.log('isExtensible：', Object.isExtensible(object_isExtensible));
+        Object.preventExtensions(object_isExtensible);
+        console.log('isExtensible：', Object.isExtensible(object_isExtensible));
+
+        console.log('Object.keys(o)：', Object.keys(object));
+
+        console.log('isPrototypeOf：', Fn.prototype.isPrototypeOf(fn));
+
+        console.log('propertyIsEnumerable：', object.propertyIsEnumerable('a'));
+        console.log('propertyIsEnumerable：', object.propertyIsEnumerable('c'));
+    </script>
+</body>
+</html>

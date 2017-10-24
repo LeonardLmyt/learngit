@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>getBoundingClientRect</title>
+    <style>*{margin:0;padding:0;}</style>
+</head>
+<body>
+    <div id="demo" style="width:20px;height:30px;background-color:red;margin:20px 30px;"></div>
+    <script>
+        var i = document.getElementById("demo");
+        console.log("顶部距离上面的距离：" + i.getBoundingClientRect().top);
+        console.log("底部距离上面的距离：" + i.getBoundingClientRect().bottom);
+        console.log("左边距离左面的距离：" + i.getBoundingClientRect().left);
+        console.log("右边距离左面的距离：" + i.getBoundingClientRect().right);
+    </script>
+</body>
+</html>

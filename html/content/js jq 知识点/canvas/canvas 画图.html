@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    	<div id="canvas-warp">   
+    <canvas id="canvas" width="500" height="500">   
+        你的浏览器居然不支持Canvas？！赶快换一个吧！！   
+    </canvas>   
+</div>   
+  
+<script>   
+    window.onload = function(){   
+        var canvas = document.getElementById("canvas");   
+        canvas.width = 800;   
+        canvas.height = 600;   
+        var context = canvas.getContext("2d");   
+        context.fillStyle = "#FFF";   
+        context.fillRect(0,0,800,600);   
+  
+        //在屏幕上绘制一个大方块   
+        context.fillStyle = "black";   
+        context.fillRect(10,10,200,200);   
+        context.save();   
+        context.beginPath();   
+  
+        //裁剪画布从(0，0)点至(50，50)的正方形   
+        context.rect(0,0,50,50);   
+        context.clip();   
+  
+        //红色圆   
+        context.beginPath();   
+        context.strokeStyle = "red";   
+        context.lineWidth = 5;   
+        context.arc(100,100,100,0,Math.PI * 2,false);   
+        //整圆   
+        context.stroke();   
+        context.closePath();   
+  
+        context.restore();   
+  
+        //再次裁切整个画布   
+        context.beginPath();   
+        context.rect(0,0,500,500);   
+        context.clip();   
+  
+        //绘制一个没有裁切的蓝线   
+        context.beginPath();   
+        context.strokeStyle = "blue";   
+        context.lineWidth = 5;   
+        context.arc(100,100,50,0,Math.PI * 2,false);   
+        //整圆   
+        context.stroke();   
+        context.closePath();   
+    };   
+	
+	function drawScreen() {   
+        var x = canvas.width / 2;   
+        var y = canvas.height / 2;   
+        var radius = 75;   
+        var offset = 50;   
+  
+        //裁剪的区域为 (x, y)为中心半径为75的圆   
+        context.save();   
+        context.beginPath();   
+        context.arc(x, y, radius, 0, 2 * Math.PI, false);   
+        context.clip();   
+  
+        // 先画一个蓝色的圆弧， 超过裁剪的部分不显示   
+        context.beginPath();   
+        context.arc(x - offset, y - offset, radius, 0, 2 * Math.PI, false);   
+        context.fillStyle = 'blue';   
+        context.fill();   
+  
+        // 画一个黄色的圆弧， 超过裁剪的部分不显示   
+        context.beginPath();   
+        context.arc(x + offset, y, radius, 0, 2 * Math.PI, false);   
+        context.fillStyle = 'yellow';   
+        context.fill();   
+  
+        // 画一个红色的圆弧， 超过裁剪的部分不显示   
+        context.beginPath();   
+        context.arc(x, y + offset, radius, 0, 2 * Math.PI, false);   
+        context.fillStyle = 'red';   
+        context.fill();   
+  
+        /*  
+         * restore()方法会返回到context原先的状态，在这里是clip()之前的状态。  
+         * 大家可以移除context.beginPath()方法，试试会发生什么。  
+         */  
+        context.restore();   
+        context.beginPath();   
+        context.arc(x, y, radius, 0, 2 * Math.PI, false);   
+        context.lineWidth = 10;   
+        context.strokeStyle = 'blue';   
+        context.stroke();   
+    }  
+</script>  
+</body>
+</html>

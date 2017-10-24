@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>flex布局</title>
+    <link href="../../../css/frameIp.css" rel="stylesheet" />
+    <style>
+        #cntvlive2-is-installed{display:none;}
+        div{width:100%;height:50px;background-color:#fff;border-bottom:1px solid #000;}
+        .flex{
+            display: -webkit-flex; /*webkit*/
+            display: flex;
+        }
+
+        /*
+            水平居中
+            justify-content: flex-start | flex-end | center | space-between | space-around;
+            主轴对齐方式：左对齐（默认） | 右对齐 | 居中对齐 | 两端对齐 | 平均分布
+        */
+        .flex1{
+            -moz-justify-content: center;
+			-webkit-justify-content: center;
+			justify-content: center;
+        }
+		
+		/*
+		    垂直居中
+			align-items: flex-start | flex-end | center | baseline | stretch;
+            交叉轴对齐方式：顶部对齐（默认） | 底部对齐 | 居中对齐 | 上下对齐并铺满 | 文本基线对齐
+		*/
+		.flex2{
+            -moz-align-items: center;
+			-webkit-align-items: center;
+			align-items: center;
+        }
+		
+		/*
+		    flex-direction: row | row-reverse | column | column-reverse;
+            主轴方向：左到右（默认） | 右到左 | 上到下 | 下到上
+		*/
+		.flex3{
+            -moz-flex-direction: row-reverse;
+			-webkit-flex-direction: row-reverse;
+			flex-direction: row-reverse;
+        }
+		
+		/*
+		    flex-direction: row | row-reverse | column | column-reverse;
+            主轴方向：左到右（默认） | 右到左 | 上到下 | 下到上
+		*/
+		.flex4{
+		    -moz-flex-direction: column;
+			-webkit-flex-direction: column;
+			flex-direction: column;
+		}
+
+        /*
+             flex-grow: <number>;  default 0 
+             放大：默认0（即如果有剩余空间也不放大，值为1则放大，2是1的双倍大小，以此类推）
+        */
+        .flex5 p:first-child{
+            -moz-flex-grow: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            background-color:#ddd;
+        }
+        .flex5 p:last-child{
+            -moz-flex-grow: 2;
+            -webkit-flex-grow: 2;
+            flex-grow: 2;
+            background-color:#D6C3C3;
+        }
+
+
+        /*
+            定义子元素的显示次序，数值越小越排前
+            order: <integer>;
+            排序：数值越小，越排前，默认为0
+        */
+        .flex6 p:nth-child(1){
+            -moz-order: 3;
+            -webkit-order: 3;
+            order: 3;
+        }
+        .flex6 p:nth-child(2){
+            -moz-order: 1;
+            -webkit-order: 1;
+            order: 1;
+        }
+        .flex6 p:nth-child(3){
+            -moz-order: 2;
+            -webkit-order: 2;
+            order: 2;
+        }
+
+        /*
+            align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+            多主轴对齐：顶部对齐（默认） | 底部对齐 | 居中对齐 | 上下对齐并铺满 | 上下平均分布
+            
+            兼容性可能会比较差 安卓4.4+ 苹果7.0+
+        */
+        .flex7{  
+            -moz-flex-flow: row wrap;
+            -webkit-flex-flow: row wrap;
+            flex-flow: row wrap;         /*这个例子就相当于设置了flex-direction为row，flex-wrap为wrap。*/
+            -moz-align-content: space-around;
+            -webkit-align-content: space-around;
+            align-content: space-around;
+        }
+        .flex7 p{width:90%;height:15px;background-color:#ddd;}
+    </style>
+</head>
+<body>
+    <div class="flex flex1">
+        <span>1</span>
+        <span>2</span>
+    </div>
+	
+	<div class="flex flex2">
+        <span>1</span>
+        <span>2</span>
+    </div>
+	
+	<div class="flex flex3">
+        <span>1</span>
+        <span>2</span>
+    </div>
+	
+	<div class="flex flex4">
+        <p>1</p>
+        <p>2</p>
+    </div>
+
+    <div class="flex flex5">
+        <p>1</p>
+        <p>2</p>
+    </div>
+
+    <div class="flex flex6">
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+    </div>
+
+    <div class="flex flex7">
+        <p></p>
+        <p></p>
+    </div>
+</body>
+</html>

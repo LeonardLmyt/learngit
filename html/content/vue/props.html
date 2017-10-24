@@ -1,0 +1,53 @@
+﻿<html ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+</head>
+<body>
+    <div id="todo-list-example">
+        <input v-model="newTodoText"
+               v-on:keyup.enter="addNewTodo"
+               placeholder="Add a todo">
+        <ul>
+            <li is="todo-item"
+                v-for="(todo, index) in todos"
+                v-bind:key="index"
+                v-bind:title="todo"
+                v-on:remove="todos.splice(index, 1)"></li>
+        </ul>
+    </div>
+
+    <script src="js/vue.min.js"></script>
+    <script type="text/javascript">
+        /*
+            this.$emit("自定义事件名",要传送的数据)搜索
+            v-on:自定义事件名="在methods中的函数名"
+        */
+        Vue.component('todo-item', {
+            template: '\<li>\
+                      {{ title }}\
+                      <button v-on:click="$emit(\'remove\')">X</button>\
+                    </li>\
+                    ',
+            props: ['title']
+        })
+        new Vue({
+            el: '#todo-list-example',
+            data: {
+                newTodoText: '',
+                todos: [
+                  'Do the dishes',
+                  'Take out the trash',
+                  'Mow the lawn'
+                ]
+            },
+            methods: {
+                addNewTodo: function () {
+                    this.todos.push(this.newTodoText)
+                    this.newTodoText = ''
+                }
+            }
+        })
+    </script>
+</body>
+</html>

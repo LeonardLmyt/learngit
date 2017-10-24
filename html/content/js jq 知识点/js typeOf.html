@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../../css/framePc.css" rel="stylesheet" />
+    <title>测试demo</title>
+</head>
+<body>
+    <script type="text/javascript">
+        /*
+            typeof 操作符来检测变量的数据类型。
+
+            一、对于数字类型的操作数而言， typeof 返回的值是 number。
+            二、对于字符串类型， typeof 返回的值是 string。比如typeof("123")返回的值是string。 
+            三、对于布尔类型， typeof 返回的值是 boolean 。比如typeof(true)返回的值是boolean。
+            四、对于对象、数组、null 返回的值是 object 。比如typeof(window)，typeof(document)，typeof(null)返回的值都是object。
+            五、 对于函数类型，返回的值是 function。比如：typeof(eval)，typeof(Date)返回的值都是function。
+            六、如 果运算数是没有定义的（比如说不存在的变量、函数或者undefined），将返回undefined。比如：typeof(sss)、typeof(undefined)都返回undefined。
+        */
+        console.log("typeof(1): " + typeof (1));
+        console.log("typeof(NaN): " + typeof (NaN));
+        console.log("typeof(Number.MIN_VALUE): " + typeof (Number.MIN_VALUE));
+        console.log("typeof(Infinity): " + typeof (Infinity));
+        console.log("typeof(\"123\"): " + typeof ("123"));
+        console.log("typeof(true): " + typeof (true));
+        console.log("typeof(window): " + typeof (window));
+        console.log("typeof(document): " + typeof (document));
+        console.log("typeof([]): " + typeof ([]));
+        console.log("typeof({}): " + typeof ({}));
+        console.log("typeof(null): " + typeof (null));
+        console.log("typeof(eval): " + typeof (eval));
+        console.log("typeof(Date): " + typeof (Date));
+        console.log("typeof(sss): " + typeof (sss));
+        console.log("typeof(undefined): " + typeof (undefined));
+
+        //Undefined 和 Null 的区别
+        console.log(typeof undefined);             // undefined
+        console.log(typeof null);                  // object
+        console.log(null === undefined);           // false
+        console.log(null == undefined);            // true
+    </script>
+</body>
+</html>

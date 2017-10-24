@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="500">
+        你的浏览器居然不支持Canvas？！赶快换一个吧！！
+    </canvas>
+    <script>
+        $(function () {
+            var canvas = document.getElementById("canvas");
+            if (canvas == null)
+                return false;
+            var context = canvas.getContext("2d");
+
+            /*三种颜色的写法*/
+            context.fillStyle = "red";
+            context.fillRect(20, 20, 80, 80);
+
+            context.fillStyle = "rgba(255,0,0,0.2)";
+            context.fillRect(120, 20, 80, 80);
+
+            context.fillStyle = "rgb(0,0,0)";
+            context.fillRect(220, 20, 80, 80);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    <script>
+        //在第一层排序中如果升序排列的话，每一次都会获得最小的值进行排序，比如第一个最小值，第二个就是倒数第二小的值，所以内层循环的循环数为json.length - i
+        var json = [3, 4, 6, 7, 3, 2, 4]; //定义冒泡排序数组
+        for (var i = 0; i < json.length; i++) {  //外层循环，抓取每一个数值进行判断
+            for (var j = 0; j < json.length - i; j++) {  //内层循环，抓取剩下的数组项进行对比
+                if (json[j] < json[j + 1]) { //判断升序排列或者降序排列
+                    var temp = json[j + 1];
+                    json[j + 1] = json[j];
+                    json[j] = temp; //替换数组位置
+                }
+            }
+        }
+        console.log(json);
+    </script>
+</body>
+</html>

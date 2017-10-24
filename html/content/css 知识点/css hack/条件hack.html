@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>测试demo</title>
+    <link href="../../css/framePc.css" rel="stylesheet" />
+    <style>
+        span {
+            display: none;
+        }
+
+        .not-ie {
+            display: inline;
+        }
+    </style>
+        <!--[if IE]>
+        <style>
+        .ie{display:inline;}
+        .not-ie{display:none;}
+        </style>
+        <![endif]-->
+        <!--[if IE 5]>
+        <style>
+        .ie5{display:inline;}
+        </style>
+        <![endif]-->
+        <!--[if IE 6]>
+        <style>
+        .ie6{display:inline;}
+        </style>
+        <![endif]-->
+        <!--[if IE 7]>
+        <style>
+        .ie7{display:inline;}
+        </style>
+        <![endif]-->
+        <!--[if IE 8]>
+        <style>
+        .ie8{display:inline;}
+        </style>
+        <![endif]-->
+        <!--[if IE 9]>
+        <style>
+        .ie9{display:inline;}
+        </style>
+        <![endif]-->
+</head>
+<body>
+    <div>
+        您正在使用
+        <span class="not-ie">非IE</span>
+        <span class="ie">IE</span>
+        <span class="ie5">5</span>
+        <span class="ie6">6</span>
+        <span class="ie7">7</span>
+        <span class="ie8">8</span>
+        <span class="ie9">9</span>
+        浏览器
+    </div>
+    <script>
+        /*  
+            参考资料 http://www.css88.com/book/css/hack/conditions.htm
+            用于选择IE浏览器及IE的不同版本
+            if条件Hack是HTML级别的（包含但不仅是CSS的Hack，可以选择任何HTML代码块）
+            如不想在非IE中看到某区域，可这样写：
+            <!--[if IE]>
+            <p>你在非IE中将看不到我的身影</p>
+            <![endif]-->
+            上述p代码块，将只在IE中可见。
+            if条件6种选择方式的使用示例（下述代码中被条件注释包含的HTML代码块也可以是link标记）：
+            是否，示例代码：
+            <!--[if IE]>
+            <style>
+            .test{color:red;}
+            </style>
+            <![endif]-->
+
+            大于，示例代码：
+            <!--[if gt IE 6]>
+            <style>
+            .test{color:red;}
+            </style>
+            <![endif]-->
+
+            大于或等于，示例代码：
+            <!--[if gte IE 6]>
+            <style>
+            .test{color:red;}
+            </style>
+            <![endif]-->
+
+            小于，示例代码：
+            <!--[if lt IE 7]>
+            <style>
+            .test{color:red;}
+            </style>
+            <![endif]-->
+
+            小于或等于，示例代码：
+            <!--[if lte IE 7]>
+            <style>
+            .test{color:red;}
+            </style>
+            <![endif]-->
+
+            非指定版本，示例代码：
+            <!--[if ! IE 7]>
+            <style>
+            .test{color:red;}
+            </style>
+            <![endif]-->
+
+            指定版本，示例代码：
+            <!--[if IE 7]>
+            <style>
+            .test{color:red;}
+            </style>
+            <![endif]-->
+        */
+
+    </script>
+</body>
+</html>

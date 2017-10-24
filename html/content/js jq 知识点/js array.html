@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    <script>
+        //数组遵循队列，堆栈概念如下
+        console.group("队列、数组堆栈概念");
+        var array01 = [];
+        array01.unshift(0);
+        array01.unshift(1);
+        array01.unshift(2);
+        console.log(array01.pop() + " unshift 先进先出 --> 队列:是一种支持先进先出(FIFO)的集合,即先被插入的数据,先被取出!");
+        var array02 = [];
+        array02.push(0);
+        array02.push(1);
+        array02.push(2);
+        console.log(array02.pop() + " push 后进先出 --> 堆栈:是一种支持后进先出(LIFO)的集合,即后被插入的数据,先被取出!");
+        console.groupEnd("队列、数组堆栈概念");
+
+        //数组添加数据 --对原数组进行操作
+        console.group("添加数据");
+        var array03 = [];
+        array03.push("0");
+        console.log(array03);
+        array03.push("1", "2");
+        console.log(array03);
+
+        var array04 = [];
+        array04.unshift("0");
+        console.log(array04);
+        array04.unshift("1", "2");
+        console.log(array04);
+        console.groupEnd("添加数据");
+
+        //数组删除数据 --对原数组进行操作
+        console.group("删除数据");
+        var array05 = [0, 1, 2];
+        array05.pop();
+        console.log(array05);
+
+        var array06 = [0, 1, 2];
+        array06.shift();
+        console.log(array06);
+        console.groupEnd("删除数据");
+
+        //截取数组 -->不对原数组进行操作
+        //slice两个参数，NUMBER start开始截取key，从0下标开始，NUMBER end结束截取key
+        //splice多个参数，NUMBER start开始keys，从0下标开始，NUMBER deleteCount删除个数，第三个以后的参数为添加到数组的key，添加的keys -->向/从数组中添加/删除项目，然后返回被删除的项目。
+        console.group("截取数组");
+        var array07 = [0, 1, 2, 3, 4, 5];
+        console.log(array07.slice(0, 4));
+
+        console.log(array07.splice(0, 1, 6, 7)); //表示从0开始删除1个项目，添加6，7两个新项目
+        console.log(array07);
+        console.groupEnd("截取数组");
+
+        //数组排序 -->字符串则对长度进行操作,直接对原数组进行操作
+        console.group("数组排序");
+        var array08 = [5, 2, 3, 1, 7, 5, 6, 9, 6, 0];
+        console.log(array08.sort()); //默认升序
+        console.log(array08.sort(function (a, b) { return a < b ? 1 : -1; })); ///降序
+        console.log(array08);
+        console.groupEnd("数组排序");
+
+        //数组合并
+        console.group("数组合并");
+        var array09 = [0, 1, 2, 3];
+        var array10 = [4, 5, 6, 7];
+        console.log(array09);
+        console.log(array10);
+        console.log(array09.concat(array10));
+        console.log(array10.concat(array09));
+        console.groupEnd("数组合并");
+
+        //替换分隔符 -->分割后返回结果字符串，不对原数组操作
+        console.group("替换分隔符");
+        var array11 = [0, 1, 2, 3, 4];
+        console.log(array11.join("***"));
+        console.log(array11);
+        console.groupEnd("替换分隔符");
+
+
+        //数组去重
+        Array.prototype.unique = function () {
+            this.sort();
+            var r = [this[0]];
+            for (var i = 1; i < this.length; i++) {
+                if (this[i] !== r[r.length - 1]) {
+                    r.push(this[i]);
+                }
+            }
+            return r;
+        }
+
+        console.group("数组去重");
+        var array11 = [1, 2, 3, 2, 3, 2, undefined, undefined, null, NaN];
+        console.log(array11.unique());
+        console.groupEnd("数组去重");
+    </script>
+</body>
+</html>

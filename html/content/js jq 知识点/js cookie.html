@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    <script>
+        //JS操作cookies方法!
+
+        //写cookies
+        function setCookie(c_name, value, expiredays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + expiredays);
+            document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()) + ";path=/";
+        }
+
+        //读取cookies
+        function getCookie(name) {
+            var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+            if (arr = document.cookie.match(reg))
+                return (arr[2]);
+            else
+                return null;
+        }
+
+        //删除cookies
+        function delCookie(name) {
+            var exp = new Date();
+            exp.setTime(exp.getTime() - 1);
+            var cval = getCookie(name);
+            if (cval != null)
+                document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString() + ";path=/";
+        }
+        //使用示例
+        //setCookie('username', 'Darren', 30)
+        //alert(getCookie("username"));
+
+
+        //javascript高级编程对cookie的操作方法
+        var CookieUtil = {
+            get: function (name) {
+                var cookieName = encodeURIComponent(name) + "=",
+                    cookieStart = document.cookie.indexOf(cookieName),
+                    cookieValue = null;
+                if (cookieStart > -1) {
+                    var cookieEnd = document.cookie.indexOf(";", cookieStart);
+                    if (cookieEnd == -1) {
+                        cookieEnd = document.cookie.length;
+                    }
+                    cookieValue = decodeURIComponent(document.cookie.substring(cookieStart +
+                        cookieName.length, cookieEnd));
+                }
+                return cookieValue;
+            },
+            set: function (name, value, expires, path, domain, secure) {
+                var cookieText = encodeURIComponent(name) + "=" +
+                    encodeURIComponent(value),
+                    d = new Date();
+                    d.setDate(d.getDate() + Number(expires));
+                if (d instanceof Date) {
+                    cookieText += "; expires=" + d.toGMTString();
+                }
+                if (path) {
+                    cookieText += "; path=" + path;
+                }
+                if (domain) {
+                    cookieText += "; domain=" + domain;
+                }
+                if (secure) {
+                    cookieText += "; secure";
+                }
+                document.cookie = cookieText;
+            },
+            unset: function (name,path,domain,secure) {
+                this.set(name, "", new Date(0), path, domain, secure);
+            }
+        }
+
+        CookieUtil.set("wwe","xsa",30,"/");
+    </script>
+</body>
+</html>

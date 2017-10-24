@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=320, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <meta charset="utf-8" />
+    <style>
+        body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{margin:0;}   ol,li,ul{margin:0; padding:0;}
+        .focus{width: 100%;height: 0;padding-bottom: 50%;margin: 0 auto;position: relative;overflow: hidden;}
+	    .focus .hd{ width:100%; height:5px;  position:absolute; z-index:1; bottom:0; text-align:center;  }
+	    .focus .hd ul{ overflow:hidden; display:-moz-box; display:-webkit-box; display:box; height:5px; background-color:rgba(51,51,51,0.5);color: rgba(51,51,51,0.5);}
+	    .focus .hd ul li{ -moz-box-flex:1; -webkit-box-flex:1; box-flex:1; }
+	    .focus .hd ul .on{ background-color:#FF4000;color: #FF4000;}
+	    .focus .bd{ position:relative; z-index:0; }
+	    .focus .bd li a{display: block;position: relative;width: 100%;height: 0;padding-bottom: 50%;}
+        .focus .bd li div{position: absolute;top: 0;left: 0;width: 100%;height: 100%;-webkit-background-size:100% 100%;-moz-background-size:100% 100%;background-size:100% 100%;}
+    </style>
+</head>
+<body>
+    <div id="focus" class="focus">
+        <div class="hd">
+            <ul></ul>
+        </div>
+        <div class="bd">
+            <div class="tempWrap" style="overflow:hidden; position:relative;">
+                <ul style="width: 1600px;position: relative;overflow: hidden;padding: 0px;margin: 0px;transition-duration: 0ms;transform: translate(-320px, 0px) translateZ(0px);">
+                    <li style="display: table-cell; vertical-align: top; width: 320px;"><a href="javascript:void(0)"><div style="background-image:url(images/tb1.jpg);"></div></a></li>
+                    <li style="display: table-cell; vertical-align: top; width: 320px;"><a href="javascript:void(0)"><div style="background-image:url(images/tb2.jpg);"></div></a></li>
+                    <li style="display: table-cell; vertical-align: top; width: 320px;"><a href="javascript:void(0)"><div style="background-image:url(images/tb3.jpg);"></div></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- http://www.superslide2.com/TouchSlide/demo/1.1left.html 参考资料 -->
+    <script src="js/TouchSlide.1.1.js"></script>
+    <script type="text/javascript">
+			TouchSlide({
+				slideCell:"#focus",
+				titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+				mainCell:".bd ul",
+				effect:"leftLoop",
+				autoPlay:true,//自动播放
+				autoPage:true //自动分页
+			});
+    </script>
+</body>
+</html>

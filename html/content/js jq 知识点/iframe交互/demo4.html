@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    子页面2
+    <button id="button">button</button>
+    <script type="text/javascript">
+        var button = document.getElementById("button");
+        button.onclick = function () {
+            console.log("子页面调用子页面的方法：" + parent.window.demo3.window.demo3());
+            console.log("子页面调用子页面的input值：" + parent.window.demo3.window.input3.value);
+        }
+    </script>
+</body>
+</html>

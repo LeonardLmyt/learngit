@@ -1,0 +1,27 @@
+﻿<html  ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+</head>
+<body>
+    <div id="app">
+        <p v-once>{{ message }}</p>(v-once只用于绑定一次数据，不能再次修改)
+        <p>{{ message }}</p>
+        <button v-on:click="change">按钮</button>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue.js!'
+            },
+            methods: {
+                change: function () {
+                    this.message = 'Hei Mr.L';
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>getElementById</title>
+</head>
+<body>
+    <div id="div">div</div>
+    <script>
+        GetId = (function (func) {
+            return function () {
+                return func.apply(document, arguments)
+            }
+        })(document.getElementById);
+
+        console.log(GetId("div").innerHTML);
+    </script>
+</body>
+</html>

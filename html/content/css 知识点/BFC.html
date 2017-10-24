@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <link href="../../css/framePc.css" rel="stylesheet" />
+    <style>
+        .floatLeft, .floatRight {
+            width: 100px;
+            height: 100px;
+        }
+
+        .floatLeft {
+            /*左浮动触发BFC*/
+            float: left;
+            background: green;
+        }
+
+        .floatRight {
+            /*右浮动触发BFC*/
+            float: right;
+            background: yellow;
+        }
+
+        .bfcContent {
+            /*table-cell触发BFC*/
+            display: table-cell;
+            width: 9000px; /*宽度大到屏幕宽度即可*/
+            /*hack手段，针对IE6、7*/
+            *display: inline-block;
+            *width: auto;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="floatLeft"></div>
+    <div class="floatRight"></div>
+    <div class="bfcContent"></div>
+</body>
+</html>

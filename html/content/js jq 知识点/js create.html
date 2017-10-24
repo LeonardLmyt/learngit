@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>create</title>
+</head>
+<body>
+    
+    <script>
+        function Pe(name) {
+            this.name = name;
+        }
+        Pe.prototype.RKO = this.name;
+
+        /* start 克隆方法 */
+        Object.create = Object.create || function (obj) {
+            var F = function () { };
+            F.prototype = obj;
+            return new F();
+        }
+
+        Object.create(A);
+        /* end */
+
+    </script>
+</body>
+</html>

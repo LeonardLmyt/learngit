@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    <div class="div1">div1</div>
+    <div id="div2">div2</div>
+    <div value="div3">div3</div>
+    <script type="text/javascript">
+        /*
+            querySelectorAll()方法接收的参数与querySelector()方法是一样的，都是一个除上述选择符，但是返回的
+            是所有匹配的元素而不仅仅是一个元素。这个返回的是一个NodeList的实例。
+            能够调用querySelectorAll()方法的类型包括Document、DocumentFragment和Element。
+        */
+        console.log(document.querySelectorAll("div"));
+    </script>
+</body>
+</html>

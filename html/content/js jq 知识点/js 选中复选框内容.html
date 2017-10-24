@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>选中复选框内容</title>
+</head>
+<body>
+    <textarea id="demo">我是杀手马大哈</textarea>
+    <button id="btn">btn</button>
+    <script>
+        //定义三个参数，textbox为容器的dom，startIndex为开始序号，shopIndex为截止序号
+        function selectText(textbox,startIndex,shopIndex) {
+            if (textbox.setSelectionRange) {
+                textbox.setSelectionRange(startIndex,shopIndex);
+            } else if (textbox.createTextRange) {
+                var range = textbox.createTextRange();
+                range.collapse(true);
+                range.moveStart("character", startIndex);
+                range.moveEnd("character", shopIndex - startIndex);
+                range.select();
+            }
+            textbox.focus();
+        }
+
+        var btn = document.getElementById("btn");
+        var demo = document.getElementById("demo");
+
+        btn.onclick = function () {
+            selectText(demo,0,3);
+        }
+    </script>
+</body>
+</html>

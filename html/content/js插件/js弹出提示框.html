@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    <button id="button">button</button>
+    <script>
+        function Prompt(m,t) {
+            var d = document, div = d.createElement("div");div.setAttribute("id", "Kj_prompt");
+            div.innerHTML = '<div style="position: fixed;top: 40%;left: 15%;width: 70%;z-index: 10000;padding: 6px;-webkit-border-radius: 5px;border-radius: 5px;text-align: center;background-color: #fff;font-size: 14px;font-family: "Microsoft YaHei";">'+
+                ''+m+'</div><div id="Kj_prompt_ok" style="position: fixed;top: 0;left: 0;bottom: 0;width: 100%;z-index: 9999;background-color: rgba(0, 0, 0, 0.4);"></div>';
+            d.body.appendChild(div);
+            var j = d.getElementById("Kj_prompt");
+            j.onclick = function () {j.remove();}
+            setTimeout(function () { if (j != null){ j.remove() }}, t * 1000)
+        }
+
+        document.getElementById("button").onclick = function () {
+            Prompt("女司机，不鸟你，用咬的，太狠了",2)
+        }
+    </script>
+</body>
+</html>

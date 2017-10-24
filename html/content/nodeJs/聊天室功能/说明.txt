@@ -1,0 +1,2 @@
+正常安装node.js之后，安装socket 指令：npm install --save socket.io
+将这两个文件放在node的根目录下直接运行即可

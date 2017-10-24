@@ -1,0 +1,21 @@
+﻿<html  ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+</head>
+<body>
+    <div id="example">
+        <button @click="counter += 1">增加 1</button>
+        <p>这个按钮被点击了 {{ counter }} 次。</p>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script type="text/javascript">
+        var example1 = new Vue({
+            el: '#example',
+            data: {
+                counter: 0
+            }
+        })
+    </script>
+</body>
+</html>

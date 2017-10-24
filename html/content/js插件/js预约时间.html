@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html />
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+</head>
+<body>
+    <style>
+        .Kj-day-ok{color:red;}
+    </style>
+    <div class="demo"></div>
+
+    <div class="demo">
+        <ul id="demo"></ul>
+    </div>
+    <script type="text/javascript">
+        function Appointment() {
+            var o = new Object() || {};
+            o.nowTime = new Date();
+            o.start = "08:00:00";
+            o.mlong = 60;
+            o.end = "12:00:00";
+            //时间戳
+            o.__getDateFun = function getDateFun(w) {
+                this.now = new Date(w);
+                this.m = this.now.getMonth() + 1;
+                this.d = this.now.getDate();
+                this.m = this.m < 10 ? "0" + this.m : this.m;
+                this.d = this.d < 10 ? "0" + this.d : this.d;
+                return this.now.getFullYear() + "-" + this.m + "-" + this.d;
+            }
+
+            o.__time = function time(data) {
+                this.start = new Date(Date.parse((data + " " + o.start).replace(/-/g, "/")));
+                this.end = new Date(Date.parse((data + " " + o.end).replace(/-/g, "/")));
+                this.lok = this.start;
+                this.ul = document.createElement("ul");
+                while (Date.parse(this.lok) < Date.parse(this.end)) {
+                    this.li = document.createElement("li");
+                    this.li.innerText = (this.start).toTimeString().substr(0, 5).toString();
+                    this.lok = new Date(this.start.setMinutes(this.start.getMinutes() + parseInt(o.mlong)));
+                    this.li.innerText = this.li.innerText + "-" + (new Date(this.start)).toTimeString().substr(0, 5).toString();
+                    this.li.setAttribute("onclick", "var j = this.parentNode.childNodes;for(var i = 0;i<j.length;i++){j[i].className = ''};this.setAttribute('class','Kj-day-ok');");
+                    this.ul.appendChild(this.li);
+                }
+                return this.ul;
+            }
+
+            o.__getDate = function getDate() {
+                this.div = document.createElement("div");
+                this.div.setAttribute('class', 'Kj-day');
+                this.ul = document.createElement("ul");
+                for (var i = 0; i < 5; i++) {
+                    this.nowTime = new Date();
+                    this.li = document.createElement("li");
+                    if (i === 0) this.li.innerText = "今天";
+                    else if (i === 1) this.li.innerText = "明天";
+                    else if (i === 2) this.li.innerText = "后天";
+                    else this.li.innerText = o.__getDateFun(this.nowTime.setDate(this.nowTime.getDate() + i)), this.nowTime = new Date();
+                    this.li.setAttribute("onclick", "var j = this.parentNode.childNodes;for(var i = 0;i<j.length;i++){j[i].className = ''};this.setAttribute('class','Kj-day-ok');");
+                    this.ul.appendChild(this.li);
+                }
+                this.div.appendChild(this.ul);
+                return this.div;
+            }
+            return o;
+        }
+
+        window.onload = function () {   
+            this.div = document.createElement("div");
+            this.div.setAttribute('class', 'Kj-time');
+            var j = new Appointment();
+            this.div.appendChild(j.__time("2010/01/01"));
+            document.body.appendChild(j.__getDate());
+            document.body.appendChild(this.div);
+        }
+
+        
+    </script>
+</body>
+</html>

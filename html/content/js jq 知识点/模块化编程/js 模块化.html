@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        /*立即执行模式，外部不能修改里面的内容*/
+        /*var module1 = (function (a,b) {
+            var _count = 0;
+            var m1 = function (a) {
+                alert(a);
+            };
+            var m2 = function (b) {
+                m1(b);
+            };
+            return {
+                m1: m1,
+                m2: m2
+            };
+        })();
+        module1.m2(12);*/
+
+        /*放大模式*/
+        //var module1 = (function (mod) {
+        //    mod.m1 = function () {
+        //        alert();
+        //    };
+        //    return mod;
+        //})(window.module1 || {});
+
+        //module1.m1();
+
+
+        /*
+            1.原始写法，模块就是实现特定方法的一组方法
+            一个function就是一个模块
+
+            这种做法的缺点很明显："污染"了全局变量，无法保证不与其他模块发生变量名冲突，而且模块成员之间看不出直接关系。
+        */
+
+        function m1() {
+
+        }
+
+        /*
+           2.对象写法，把全部的模块封装成一个对象
+           下面的函数m1()，m2()全部都封装在module1里面，使用的时候直接module1.m1(),
+           但是，这样的写法会暴露所有模块成员，内部状态可以被外部改写。比如，外部代码可以直接改变内部计数器的值。
+        */
+
+        var module1 = new Object({
+            _count: 0,
+            m1: function () {
+                //...
+            },
+            m2: function () {
+                //...
+            }
+        });
+
+        /*
+           3.立即执行函数
+           使用立即执行函数，可以创建一个私有的作用域，使外部无法修改成员变量
+           使用下面的写法，外部代码无法读取内部的_count变量，在变量或者方法前加_或者__是前端的默认写法，表示私有的
+           return 出去的都可以修改，没有return出去的都不能修改，私有，但是可以定义特权方法修改
+        */
+
+        var module1 = (function () {
+            var _count = 0;
+            var m1 = function () {
+                //...
+            };
+            var m2 = function () {
+                //...
+            };
+            return {
+                m1: m1,
+                m2: m2
+            };
+        })();
+
+        /*
+           4.宽放大模式,如果一个模块很大，必须分成几个部分，或者一个模块需要继承另一个模块，
+             在浏览器环境中，模块的各个部分通常都是从网上获取的，有时无法知道哪个部分会先加载。
+
+
+             貌似只能module1.m1这样去使用这个宽放大模式，其他没啥作用
+        */
+
+        var module1 = (function (mod) {
+            mod.m1 = function () { console.log();}
+            return mod;
+        })(window.module1 || {});
+
+        /*
+           5.输入全局变量
+           独立性是模块的重要特点，模块内部最好不与程序的其他部分直接交互。
+           为了在模块内部调用全局变量，必须显式地将其他变量输入模块。
+
+           下面的module1模块需要使用jQuery库和YUI库，就把这两个库（其实是两个模块）当作参数输入module1。这样做除了保证模块的独立性，还使得模块之间的依赖关系变得明显。
+        */
+
+        var module1 = (function ($, YAHOO) {
+            //...
+        })(jQuery, YAHOO);
+    </script>
+</body>
+</html>

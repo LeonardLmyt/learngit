@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head><title>Untitled Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+</head>
+<body>
+<form id="from1">
+    <input id="ButtonCreat" style="width: 148px" type="button" value="创建表格" onclick="ButtonCreatTable_onclick()" />
+    行:
+    <input id="Text_row" type="text"  value="2"/>
+    列：
+    <input id="Text_columns" type="text"  value="3"/>
+    <br />
+    <br />
+    表格出现在这里：<br />
+    <div id="tableAppear">
+    
+    </div>
+    <br />
+    <br />
+    <br />
+    <input id="Button1" style="width: 206px" type="button" value="在任意行前增加一行" onclick="innser_Tr()"  />
+     任意行：<input id="Text_insert" type="text" value="1" /><br />
+    <br />
+    <br />
+    <br />
+    <input id="ButtonDel" type="button" value="删除任意行" style="width: 200px" language="javascript" onclick="return ButtonDel_onclick()" />
+    任意行：<input id="Text_del" type="text" value="2" />
+    <br />
+    <br />
+    <br />
+    <input id="ButtonReplace" style="width: 200px" type="button" value="取代子接点" language="javascript" onclick="return ButtonReplace_onclick()" />
+    <div id="replaceDiv">
+    <table id="replaceTable">
+    <tr>
+    <td width=30%>1</td>
+    <td width=35%>2</td>
+    <td width=35%>3</td>
+    </tr>
+    </table>
+    </div>
+</form>
+    <script language="javascript" type="text/javascript">
+  
+  //创建表格
+  var table_node=document.createElement("table");
+  //创建TBody
+  var tbody_node=document.createElement("tbody");
+  
+function ButtonCreatTable_onclick() 
+{
+  //得到 行 和 列
+  var rows=parseInt(document.getElementById("Text_row").value);
+  var cols=parseInt(document.getElementById("Text_columns").value);
+  //得到 Div  id="tableAppear" 
+  var table_div=document.getElementById("tableAppear");
+
+  table_div.appendChild(table_node);
+  
+  tbody_node.id="tablebody";
+  table_node.appendChild(tbody_node);
+  // loop to add all the <tr>
+  for(var row_index=1;row_index<=rows;row_index++)
+  {
+    var tr_node=document.createElement("tr");
+    tbody_node.appendChild(tr_node);
+    for(var col_index=1;col_index<=cols;col_index++)
+    {
+       var td_node=document.createElement("td");
+       tr_node.appendChild(td_node);
+       var td_text=document.createTextNode("Row: "+row_index+"  Col: "+col_index);
+       td_node.appendChild(td_text);
+    }
+  }
+}
+
+function innser_Tr() 
+{  
+   if(document.getElementById("tableAppear").hasChildNodes())  //有孩子
+   {   var reference_row=parseInt(document.getElementById("Text_insert").value);
+       var reference_node=tbody_node.childNodes[reference_row-1];
+       var new_tr_node=document.createElement("tr");
+       var insert_node=tbody_node.insertBefore(new_tr_node,reference_node);
+       var cols=reference_node.childNodes.length;
+       for(var col_index=1;col_index<=cols;col_index++)
+       {
+               var td_node=document.createElement("td");
+               new_tr_node.appendChild(td_node);
+               var td_text=document.createTextNode("Row: "+reference_row+"  Col: "+col_index);
+               td_node.appendChild(td_text);
+       }
+   }
+     else
+        alert("请点击创建表格！");
+   
+}
+
+function ButtonReplace_onclick() 
+{    
+      if(document.getElementById("tableAppear").hasChildNodes())  //有孩子
+      {
+         var cloneTable=table_node.cloneNode(true); //复制表格
+         var reptable=document.getElementById("replaceTable");
+         document.getElementById("replaceDiv").replaceChild(cloneTable,reptable); //替换到当前位置
+      
+      }
+      else
+        alert("请点击创建表格！");
+}
+
+function ButtonDel_onclick()  
+{
+    if(document.getElementById("tableAppear").hasChildNodes())
+    {
+        var delrow=parseInt(document.getElementById("Text_del").value);
+        var del_node=tbody_node.childNodes[delrow-1];
+        tbody_node.removeChild(del_node);
+    }
+    else
+        alert("请点击创建表格！");
+}
+
+</script>
+</body>
+</html>

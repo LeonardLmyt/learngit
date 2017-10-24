@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=320,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>jq 横向垂直二级菜单</title>
+    <link href="css/framePc.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="header_nav">
+        <div class="header_nav_sub">
+            <ul class="header_nav_sub_ul">
+                <li>
+                    <a href="javscript:void(0)" title="首页" class="header_bottom_sub_ok_1">首页</a>
+                </li>
+                <li>
+                    <a href="javscript:void(0)" title="品牌中心" class="header_bottom_sub_ok_2">品牌中心</a>
+                    <ul>
+                        <li data-value="77" data-type="1"><a href="javscript:void(0)">品牌故事</a></li>
+                        <li data-value="85" data-type="1"><a href="javscript:void(0)">产品创意</a></li>
+                        <li data-value="60" data-type="2"><a href="javscript:void(0)">团队风采</a></li>
+                        <li data-value="61" data-type="2"><a href="javscript:void(0)">文化理念</a></li>
+                        <li data-value="62" data-type="2"><a href="javscript:void(0)">专利证书</a></li>
+                        <li data-value="63" data-type="3"><a href="javscript:void(0)">新闻发布</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javscript:void(0)" title="产品中心">产品中心</a>
+                </li>
+                <li>
+                    <a href="javscript:void(0)" title="服务中心">服务中心</a>
+                </li>
+                <li>
+                    <a href="javscript:void(0)" title="招商加盟">招商加盟</a>
+                </li>
+                <li>
+                    <a href="javscript:void(0)" title="联系我们">联系我们</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.header_nav_sub_ul li').hover(function () {
+               $('ul', this).fadeIn();
+           },function () {
+               $('ul', this).fadeOut();
+           });
+        });
+    </script>
+</body>
+</html>

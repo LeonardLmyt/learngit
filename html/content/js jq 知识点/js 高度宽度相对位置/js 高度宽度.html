@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html style="width:100%;height:100%;margin:0;left:0;">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../../../css/framePc.css" rel="stylesheet" />
+    <title>测试demo</title>
+</head>
+<body>
+    <div style="width:2500px;height:1500px;"></div>
+    <div style="position:relative;margin:10px;width: 100%;height: 1000px;">
+        <div style="position:absolute;top:100px;left:100px;overflow:hidden;width:500px;height:500px;padding:5px;margin:9px;background:#ddd;" id="block">
+
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        /*
+            2016-10-22测试全部浏览器，通过
+            兼容性写法，判断浏览器的标准兼容模式是否开启，如果为CSS1Compat，则是，获取信息需是documentElement集合，
+            如果为BackCompat，则否，获取信息为body集合
+        */
+        function Size() {
+            this.type = document.compatMode == "CSS1Compat";
+            this.clientWidth = this.type ? document.documentElement.clientWidth : document.body.clientWidth; //获取网页可见区域宽
+            this.clientHeight = this.type ? document.documentElement.clientHeight : document.body.clientHeight;//获取网页可见区域高
+            this.offsetWidth = document.documentElement.offsetWidth; //获取网页可见区域宽(包括边线的宽)
+            this.offsetHeight = document.documentElement.offsetHeight; //获取网页可见区域高(包括边线的高)
+            this.scrollWidth = this.type ? document.documentElement.scrollWidth : document.body.scrollWidth; //网页正文全文宽
+            this.scrollHeight = this.type ? document.documentElement.scrollHeight : document.body.scrollHeight;//网页正文全文高
+            this.scrollTop = this.type ? (document.documentElement.scrollTop == 0 ? document.body.scrollTop : document.documentElement.scrollTop) : document.body.scrollTop; //网页被卷去的高
+            this.scrollLeft = this.type ? (document.documentElement.scrollLeft == 0 ? document.body.scrollLeft : document.documentElement.scrollLeft) : document.body.scrollLeft;//网页被卷去的左
+            this.screenWidth = window.screen.width; //屏幕分辨率的宽
+            this.screenHeight = window.screen.height; //屏幕分辨率的高
+            this.screenTop = window.screenTop > 0 ? window.screenTop : window.screenY; //浏览器距屏幕顶部宽（IE中会加上浏览器头部宽度）
+            this.screenLeft = window.screenLeft > 0 ? window.screenLeft : window.screenX; //浏览器距屏幕左部宽
+            this.blockWidth = document.getElementById("block").offsetWidth; //元素宽
+            this.blockHeight = document.getElementById("block").offsetHeight; //元素高
+            this.blockTop = document.getElementById("block").offsetTop; //元素距父元素高（相较于定位，如果没有的话父元素为body）
+            this.blockLeft = document.getElementById("block").offsetLeft; //元素距父元素左（相较于定位，如果没有的话父元素为body）
+        }
+
+
+        var NewSize = new Size();
+
+        with (NewSize) {
+            console.log("clientWidth:" + clientWidth + ",\n" +
+                "clientHeight:" + clientHeight + ",\n" +
+                "offsetWidth:" + offsetWidth + ",\n" +
+                "offsetHeight:" + offsetHeight + ",\n" +
+                "scrollWidth:" + scrollWidth + ",\n" +
+                "scrollHeight:" + scrollHeight + ",\n" +
+                "scrollTop:" + scrollTop + ",\n" +
+                "scrollLeft:" + scrollLeft + ",\n" +
+                "screenWidth:" + screenWidth + ",\n" +
+                "screenHeight:" + screenHeight + ",\n" +
+                "screenTop:" + screenTop + ",\n" +
+                "screenLeft:" + screenLeft + ",\n" +
+                "blockWidth:" + blockWidth + ",\n" +
+                "blockHeight:" + blockHeight + ",\n" +
+                "blockTop:" + blockTop + ",\n" +
+                "blockLeft:" + blockLeft);
+        }
+        
+        document.getElementsByTagName("body")[0].onclick = function () {
+            var NewSizeO = new Size();
+            with (NewSizeO) {
+                console.log("clientWidth:" + clientWidth + ",\n" +
+                    "clientHeight:" + clientHeight + ",\n" +
+                    "offsetWidth:" + offsetWidth + ",\n" +
+                    "offsetHeight:" + offsetHeight + ",\n" +
+                    "scrollWidth:" + scrollWidth + ",\n" +
+                    "scrollHeight:" + scrollHeight + ",\n" +
+                    "scrollTop:" + scrollTop + ",\n" +
+                    "scrollLeft:" + scrollLeft + ",\n" +
+                    "screenWidth:" + screenWidth + ",\n" +
+                    "screenHeight:" + screenHeight + ",\n" +
+                    "screenTop:" + screenTop + ",\n" +
+                    "screenLeft:" + screenLeft + ",\n" +
+                    "blockWidth:" + blockWidth + ",\n" +
+                    "blockHeight:" + blockHeight + ",\n" +
+                    "blockTop:" + blockTop + ",\n" +
+                    "blockLeft:" + blockLeft);
+            }
+        }
+    </script>
+</body>
+</html>

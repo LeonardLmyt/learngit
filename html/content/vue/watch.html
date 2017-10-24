@@ -1,0 +1,31 @@
+﻿<html  ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+</head>
+<body>
+    <div id="example">
+        <p>{{ a }}</p>
+        <button v-on:click="add">添加</button>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script type="text/javascript">
+        var data = { a: 1 };
+        var vm = new Vue({
+            el: '#example',
+            data: data,
+            methods: {
+                add: function () {
+                    this.a += 1;
+                }
+            }
+        })
+        vm.$data === data // -> true
+        vm.$el === document.getElementById('example') // -> true
+        // $watch 是一个实例方法
+        vm.$watch('a', function (newVal, oldVal) {
+            console.log('新值：' + newVal + ' 旧值：' + oldVal);
+        })
+    </script>
+</body>
+</html>

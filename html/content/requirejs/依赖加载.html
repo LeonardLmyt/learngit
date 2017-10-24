@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>require依赖加载</title>
+</head>
+<body>
+    <script src="../../js/require/require.js"></script>
+    <script>
+        /*****************************require.js模块化加载，css文件以及js依赖加载*****************************/
+        /*map所配置的为加载css文件所用 --- map: 对于给定的模块前缀，使用一个不同的模块ID来加载该模块。*/
+        /*直接在shim的deps节点配置需要的css文件,以css!开头，路径为相对路径*/
+
+        require.config({
+            map: {
+                '*': {
+                    'css': '../../js/require/require.css'
+                }
+            },
+            paths: {
+                jquery: '../../js/jquery-1.8.3.min',
+                domReady: 'require-2.1.11/domReady',
+                layer: '../../js/layer_mobile2.0/layer',
+            },
+            shim: {
+                layer: {
+                    deps: ['jquery', 'css!../../js/layer_mobile2.0/need/layer.css'],
+                    exports: 'layer',
+                }
+            }
+        });
+        require(["jquery", "layer"], function () {
+            //提示
+            layer.open({
+                content: 'hello layer'
+              , skin: 'msg'
+              , time: 2 //2秒后自动关闭
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../../css/framePc.css" rel="stylesheet" />
+    <title>测试demo</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        //  返回一个布尔值，该值指示一个对象是否为特定类的一个实例。
+
+        //  A instanceof B :检测B.prototype是否存在于参数A的原型链上.
+        function Foo() {}
+        var foo = new Foo();
+        console.log(foo instanceof Foo);//true
+
+        //继承中判断实例是否属于它的父类
+        function Ben_parent() { }
+        function Ben_son() { }
+        Ben_son.prototype = new Ben_parent();        //原型继承
+        var ben_son = new Ben_son();
+        console.log(ben_son instanceof Ben_son);     //true
+        console.log(ben_son instanceof Ben_parent);  //true
+
+        //复杂用法
+        /*
+            不是对象，直接返回false
+            用 [[Get]] 方法取 F方法的prototype属性，结果赋值给O
+            如果不是一个对象，报告异常
+            重复循环
+        */
+        function Ben() { }
+        console.log(Object instanceof Object);     //true
+        console.log(Function instanceof Function); //true
+        console.log(Function instanceof Object);   //true
+        console.log(Ben instanceof Function);      //true
+        console.log(String instanceof String);     //false
+        console.log(Boolean instanceof Boolean);   //false
+        console.log(Ben instanceof Ben);           //false
+    </script>
+</body>
+</html>

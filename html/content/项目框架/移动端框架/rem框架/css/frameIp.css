@@ -1,0 +1,52 @@
+﻿@charset "utf-8";
+
+/* Css Reset Mobile*/
+body{background-color: #eeeeee;color: #666666;-webkit-font-smoothing: antialiased;font-family: arial,"Microsoft YaHei";width: 4rem;height: 100%;overflow-x: hidden;-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;}
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{margin:0;}
+ol,li,ul{margin:0; padding:0;}
+*{ -webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-tap-highlight-color: transparent; /* For some Androids */zoom:1;}
+address,caption,cite,code,dfn,em,th,var,i { font-weight:normal; font-style:normal; }
+ol,ul,li { list-style: none; }
+a { background: transparent; text-decoration: none; color: #000; }
+a:active {background-color: #ddd !important;}
+button,input[type='button']{-webkit-appearance:none;-moz-appearance:none;}
+img {max-width: 100%;height: auto;}
+ol, ul, li {list-style: none;}
+
+/*-----------万能闭合-------------*/
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%;}
+*+html .clearfix{min-height:1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+.clear{font-size:0px; clear:both; height:0px; overflow:hidden}
+
+/*通用布局*/
+.fl{ float:left;}
+.fr{  float: right;}
+.f8{font-size:0.1rem;}
+.f9{font-size:0.1125rem;}
+.f10{font-size:0.125rem;}
+.f11{font-size:0.1375rem;}
+.f12{font-size:0.15rem;}
+.f13{font-size:0.1625rem;}
+.f14{font-size:0.175rem;}
+.f15{font-size:0.1875rem;}
+.f16{font-size:0.2rem;}
+.f17{font-size:0.2125rem;}
+.f18{font-size:0.225rem;}
+.f19{font-size:0.2375rem;}
+.f20{font-size:0.25rem;}
+.f21{font-size:0.2625rem;}
+.f22{font-size:0.275rem;}
+.f23{font-size:0.2875rem;}
+.f24{font-size:0.3rem;}
+.f25{font-size:0.3125rem;}

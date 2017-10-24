@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>测试demo</title>
+    <script src="../../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    刹那间肯定是你科技城的斯诺克净流出的是哪里
+    <div id="ok">
+        按钮
+    </div>
+    <script>
+        //基于jq的弹出提示
+        function Prompt(color, message, time) {
+            var ms = {} || new Object;
+            ms.c = arguments[0], ms.m = arguments[1], ms.t = arguments[2], ms.b, ms.bg, ms.w = $(window).width(), ms.h = $(window).height();
+            if (ms.c === '白色') { ms.c = 'white', ms.b = 'rgba(0, 0, 0, 0.8)', ms.bg = 'rgba(255, 255, 255, 0)'; }
+            else if (ms.c === '黑色') { ms.c = 'black', ms.b = 'rgba(255, 255, 255, 1)', ms.bg = 'rgba(0, 0, 0, 0.4)'; }
+            $("body").append("<div class=\"Kj-prompt\" style=\"-webkit-animation-name: fadeIn; -webkit-animation-duration: 0.6s;-webkit-animation-iteration-count: 1;-webkit-animation-delay: 0s; position: fixed;top: 40%;left: 0;z-index: 9999;text-align: center;background-color: " + ms.b + ";color: " + ms.c + ";border-radius: 5px;" +
+                      "-webkit-border-radius: 5px;-moz-border-radius: 5px;padding: 6px 0;\"><div class=\"Kj-promptsub\" style=\"padding: 0 10px;line-height: 28px;\">" + message + "</div></div><div class=\"Kj-bgcolor\" style=\"position: fixed;top: 0%;left: 0%;width: 100%;height: 100%;z-index: 9998;background-color: " + ms.bg + ";\"></div><style>@-webkit-keyframes fadeIn," +
+                      "@keyframes fadeIn,@-o-keyframes fadeIn,@-ms-keyframes fadeIn{0% {opacity: 0;}50% {opacity: 0.5;}100% {opacity: 1;}}</style>");
+            ms.cnm = $(".Kj-prompt");
+            $(".Kj-bgcolor").bind("click", function () { $(".Kj-bgcolor,.Kj-prompt").fadeOut(100).remove(); })
+            ms.cnm.css({ "left": (ms.w - ms.cnm.width()) * 0.5 });
+            ms.cnm.width() > (ms.w * 0.7) ? ms.cnm.css({ "max-width": ms.w * 0.7, "left": ms.w * 0.15 }) : "";
+            ms.cnm.height() > (ms.h * 0.2) ? ms.cnm.css({ "top": (ms.h - ms.cnm.height()) * 0.5 }) : "";
+            setTimeout('$(".Kj-prompt,.Kj-bgcolor").fadeOut(100).remove();', time * 1000);
+        }
+        $("#ok").click(function () {
+            Prompt("白色", "朝花夕拾", 1.5)
+        })
+    </script>
+</body>
+</html>

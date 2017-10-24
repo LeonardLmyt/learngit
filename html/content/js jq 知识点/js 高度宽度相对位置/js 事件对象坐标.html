@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html style="width:100%;height:100%;margin:0;left:0;">
+<head>
+    <meta content="测试demo" name="Keywords">
+    <meta content="测试demo" name="Description">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../../../css/framePc.css" rel="stylesheet" />
+    <title>测试demo</title>
+</head>
+<body style="position:relative;width:100%;height:100%;padding:15px;margin:20px;">
+    <div style="position:absolute;top:100px;left:100px;width:500px;height:500px;padding:5px;margin:9px;background:#ddd;" onclick="xy(event)">
+
+    </div>
+    <script type="text/javascript">
+        /*********************************
+        参考文章 ： http://blog.sina.com.cn/s/blog_780a94270101kdgo.html
+                    http://www.2cto.com/kf/201409/333401.html
+
+        event.clientX、event.clientY
+        鼠标相对于浏览器窗口可视区域的X，Y坐标（窗口坐标），可视区域不包括工具栏和滚动条。IE事件和标准事件都定义了这2个属性
+
+        event.pageX、event.pageY
+        获取页面坐标，当有滚动条的时候，但它们使用的是文档坐标而非窗口坐标。这2个属性不是标准属性，但得到了广泛支持。IE事件中没有这2个属性。（在没有滚动条的情况下，clientX等于pageX）
+
+        event.offsetX、event.offsetY
+        鼠标相对于事件源元素（srcElement）的X,Y坐标，只有IE事件有这2个属性，标准事件没有对应的属性。（本地测试所有浏览器都支持这个属性）
+
+        event.layerX, event.layerY 
+        鼠标相对于事件源元素（srcElement）的X,Y坐标，在Firefox下使用
+
+        event.screenX、event.screenY
+        鼠标相对于用户显示器屏幕左上角的X,Y坐标。标准事件和IE事件都定义了这2个属性
+        *******************************/
+        function xy(event) {
+            var event = event ? event : window.event;
+            console.log("clientX:" + event.clientX + "," + "clientY:" + event.clientY);
+            console.log("pageX:" + event.pageX + "," + "pageY:" + event.pageY);
+            console.log("x:" + event.x + "," + "y:" + event.y);
+            console.log("offsetX:" + event.offsetX + "," + "offsetY:" + event.offsetY);
+            console.log("layerX:" + event.layerX + "," + "layerY:" + event.layerY);
+            console.log("screenX:" + event.screenX + "," + "screenY:" + event.screenY);
+
+            //IE8及更早以前的版本不支持事件对象的页面坐标，不过可以使用客户区坐标和滚动信息算出来
+            if (event.pageX === undefined) {
+                event.pageX = event.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft);
+            }
+            if (event.pageY === undefined) {
+                event.pageY = event.clientY + (document.documentElement.scrollTop || document.body.scrollTop);
+            }
+        }
+
+
+
+        /*****************************
+        FF:clientX,pageX 相对于浏览器窗口可视区域（浏览器左边加上自身的padding-left）注：x在FF中无效
+        Chrome:clientX,pageX,x 相对于浏览器窗口可视区域（浏览器左边加上自身的padding-left）
+        Opera:clientX,pageX,x 相对于浏览器窗口可视区域（浏览器左边加上自身的padding-left）
+        IE7:clientX相对于浏览器窗口可视区域（浏览器左边加上自身的padding-left，有小小的偏差），pageX无效，clientX多了两个像素，x比clientX小，基本上等于去掉margin个padding之后的值
+        IE8:clientX相对于浏览器窗口可视区域（浏览器左边加上自身的padding-left，有小小的偏差），pageX无效，x比clientX小，基本上等于去掉margin个padding之后的值
+        IE9以上:clientX,pageX,x 相对于浏览器窗口可视区域（浏览器左边加上自身的padding-left），x浏览器左边加上自身的margin-left
+
+        clientX全部浏览器支持,IE7,8有小小偏差
+
+        pageX IE7,8不支持
+
+        x FF不支持
+
+        IE8以下不支持offsetX属性，其他都ok
+
+        offsetX全部浏览器支持
+
+        screenX全部浏览器支持
+        *****************************/
+    </script>
+</body>
+</html>
